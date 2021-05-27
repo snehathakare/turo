@@ -6,7 +6,7 @@ function Nav() {
     return (
         <header className="nav">
             <div className="nav-left-link">
-                <a href="/">Turo</a>
+                <div className="logo"><a href="/">TURO</a></div>
             </div>
             <div className="nav-right-links">
                 <a href="/">Become a host</a>

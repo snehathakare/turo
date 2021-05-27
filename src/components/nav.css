@@ -9,7 +9,20 @@
 .nav-left-link{
     display: flex;
     align-items: center;
+    font-weight: bold;
 }
+
+.logo{
+    background-color: black;
+    height: 32px;
+    width: 88px;
+}
+
+.logo a{
+    text-decoration: none;
+    color: white;
+}
+
 .nav-right-links a{
    text-decoration: none;
    margin: 0 12px;
