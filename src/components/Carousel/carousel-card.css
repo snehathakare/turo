@@ -1,0 +1,28 @@
+.carousel-card{
+    display: flex;
+    width: 1112px;
+    margin-left: auto;
+    margin-right: auto;
+    flex:0 0;
+    justify-content: center;
+}
+.carousel-card-text{
+    display: flex;
+    flex-direction: column;
+    margin-left:40px;
+    width: 40%;
+}
+
+.primary-btn{
+    display: inline-block;
+    width:30%;
+    height: 50px;
+    line-height: 49px;
+    padding: 0 18px;
+    text-align: center;
+    vertical-align: top;
+    background-color: #593CFB;
+    border: 1px solid #593CFB;
+    color: #FFFFFF;
+    font-size: 18px;
+}

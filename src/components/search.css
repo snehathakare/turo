@@ -1,6 +1,8 @@
 .searchform {
     display: flex;
     justify-content: space-around;
+    padding: 4px;
+    align-items: center;
 }
 
 .search-container {
@@ -30,7 +32,18 @@
     border: 0;
     color: #FFFFFF;
     cursor: pointer;
+    width:15%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 .search-logo{
     height:24px
+}
+.input-container{
+    width: 100%;
+    padding-left: 12px;
+}
+.input-container input{
+    width: 100%;
 }

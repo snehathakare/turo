@@ -10,7 +10,15 @@ function Nav() {
             </div>
             <div className="nav-right-links">
                 <a href="/">Become a host</a>
-                <a href="/">Learn More</a>
+                <div className="nav-dropdown">
+                    <a href="/">Learn More</a>
+                    <ul className="dropdown-content">
+                        <li>How Turo works</li>
+                        <li>Insurance & Protection</li>
+                        <li>Carculator</li>
+                        <li>Host Tools</li>
+                    </ul>
+                </div>
                 <a href="/">Trips</a>
                 <a href="/">Messages</a>
                 <PersonOutlineIcon/>

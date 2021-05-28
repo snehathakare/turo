@@ -16,11 +16,14 @@
     background-color: black;
     height: 32px;
     width: 88px;
+    display: flex;
+    justify-content: center;
 }
 
 .logo a{
     text-decoration: none;
     color: white;
+    margin-top: 5px;
 }
 
 .nav-right-links a{
@@ -49,3 +52,30 @@
     height: 60px;
     padding: 0 16px;
 }
+.dropdown-content{
+    display: none;
+    position: absolute;
+    background-color: #f1f1f1;
+    min-width: 160px;
+    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+    z-index: 1;
+}
+.dropdown-content li:hover {
+    background-color: #ddd;
+}
+.dropdown-content li {
+   list-style: none;
+   position: relative;
+   font-weight: bold;
+   font-size: 12px;
+   padding: 5px 0;
+   display: block;
+}
+.nav-dropdown:hover .dropdown-content {
+    display: block;
+}
+.nav-dropdown{
+    position: relative;
+    display: inline-block;
+}
+
