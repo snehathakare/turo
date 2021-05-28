@@ -23,6 +23,7 @@ function DestinationCarousel() {
     return (
             <>
             <div>
+              <h2>Browse by destination</h2>
               <Carousel breakPoints={breakPoints}>
                 {destinations.map((des) => (
                        <Item>

@@ -1,0 +1,49 @@
+.demo{
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    width: 940px;
+    margin-left: auto;
+    margin-right: auto;
+}
+.demo-text h2{
+    margin-top:0;
+}
+.thumbs-wrapper{ 
+    display: none;
+}
+.demo-links{
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+}
+.carousel-root{
+    width: 50%;
+}
+
+.demo-text{
+    margin-left:40px;
+    width: 50%;
+}
+.demo-bg{
+    background: linear-gradient( 90deg, #FBF9F6 970px, transparent 970px );
+    margin-left: auto;
+    margin-right: auto;
+    position: relative;
+    max-width: 970px;
+}
+.demo-links button{
+    display: inline-block;
+    height: 50px;
+    line-height: 49px;
+    padding: 0 18px;
+    text-align: center;
+    vertical-align: top;
+    background-color: #593CFB;
+    border: 1px solid #593CFB;
+    color: #FFFFFF;
+    font-size: 18px;
+    -webkit-transition: 0.5s border,0.5s background;
+    transition: 0.5s border,0.5s background;
+    margin-right: 30px;
+}

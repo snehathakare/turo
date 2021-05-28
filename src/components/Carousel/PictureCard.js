@@ -23,6 +23,7 @@ function PictureCard() {
     return (
             <>
             <div>
+              <h2>Browse by make</h2>
               <Carousel breakPoints={breakPoints}>
                 {cars.map((car) => (
                        <Item>
