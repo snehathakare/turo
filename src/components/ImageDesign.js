@@ -4,7 +4,7 @@ import './image.css'
 function ImageDesign() {
     return (
         <div className="image-design">
-            <img src="https://blog.turo.com/blog/wp-content/uploads/2021/04/Kyle_Engman_21-copy-2_lesssmall.jpg" />
+            <img src="https://blog.turo.com/blog/wp-content/uploads/2021/04/Kyle_Engman_21-copy-2_lesssmall.jpg" alt="turo"/>
             <div className="image-overlap">
                 <h5>FEATURED TRAVELOGUE</h5>
                 <h2>An Olympic experience in Washington</h2>

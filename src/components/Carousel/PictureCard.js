@@ -12,23 +12,16 @@ const cars = [
     { src: "http://resources.turo.com/f/81934/386x308/065308f2c4/image_make_mb-2x.jpg", name: "Benz" },
 ];
 
-const breakPoints = [
-    { width: 1, itemsToShow: 1 },
-    { width: 550, itemsToShow: 2 },
-    { width: 768, itemsToShow: 3 },
-    { width: 1200, itemsToShow: 4 },
-  ];
-
 function PictureCard() {
     return (
             <>
             <div>
               <h2>Browse by make</h2>
-              <Carousel breakPoints={breakPoints}>
+              <Carousel itemsToShow={5}>
                 {cars.map((car) => (
-                       <Item>
-                           <div className="pic-card" key={car.name}>
-                            <img src={car.src}/>
+                       <Item key={car.name}>
+                           <div className="pic-card">
+                            <img src={car.src} alt="turo"/>
                             <p>{car.name}</p>
                         </div>
                        </Item> 

@@ -12,23 +12,16 @@ const destinations = [
     { src: "http://resources.turo.com/f/81934/240x240/87ab56dd05/illo_city_toronto-2x.png", name: "Toronto" },
 ];
 
-const breakPoints = [
-    { width: 1, itemsToShow: 1 },
-    { width: 550, itemsToShow: 2 },
-    { width: 768, itemsToShow: 3 },
-    { width: 1200, itemsToShow: 4 },
-  ];
-
 function DestinationCarousel() {
     return (
             <>
             <div>
               <h2>Browse by destination</h2>
-              <Carousel breakPoints={breakPoints}>
+              <Carousel itemsToShow={5}>
                 {destinations.map((des) => (
-                       <Item>
+                       <Item key={des.name}>
                            <div className="pic-card" key={des.name}>
-                            <img src={des.src}/>
+                            <img src={des.src} alt="turo"/>
                             <p>{des.name}</p>
                         </div>
                        </Item> 

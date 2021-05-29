@@ -8,7 +8,9 @@ import ImageDesign from './components/ImageDesign';
 import PictureCard from './components/Carousel/PictureCard';
 import DestinationCarousel from './components/Carousel/DestinationCarousel';
 import Experience from './components/Carousel/Experience';
-import DemoCarousel from './components/Carousel/DemoCarousel';
+import SupportCarousel from './components/Carousel/SupportSection';
+import HostCarousel from './components/Carousel/HostCarousel';
+import Footer from './components/Footer';
 
 function App() {
   return (
@@ -18,9 +20,9 @@ function App() {
       <Banner />
       <div className="app-content">
         <Heading1 text="The world’s largest car sharing marketplace"/>
-        {/* <div className="flex">
+        <div className="flex">
           <div className="carousel-container"><CarouselCard /></div>
-        </div> */}
+        </div>
         <div className="flex">
           <div className="carousel-container"><PictureCard /></div>
         </div>
@@ -33,7 +35,11 @@ function App() {
           <div className="carousel-container"><Experience /></div>
         </div>
         <Heading2 text="Meet the Hosts" />
-        <DemoCarousel />
+        <div className="flex">
+          <div className="carousel-container"><HostCarousel /></div>
+        </div>
+        <SupportCarousel />
+        <div className="flex"><Footer /></div>
       </div>
     </div>
   );

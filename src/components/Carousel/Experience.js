@@ -12,24 +12,16 @@ const destinations = [
     { src: "http://resources.turo.com/f/81934/328x262/294b8f8aec/image_experience_classiccars.jpg", name: "Classic car" },
 ];
 
-const breakPoints = [
-    { width: 1, itemsToShow: 1 },
-    { width: 550, itemsToShow: 2 },
-    { width: 768, itemsToShow: 3 },
-    { width: 1200, itemsToShow: 4 },
-  ];
-
-
 function Experience() {
     return (
         <>
         <div>
           <h2>Browse by experience</h2>
-          <Carousel breakPoints={breakPoints}>
+          <Carousel itemsToShow={3}>
             {destinations.map((des) => (
-                   <Item>
-                       <div className="pic-card" key={des.name}>
-                        <img src={des.src}/>
+                   <Item max-width="100%" key={des.name}>
+                       <div className="pic-card">
+                        <img src={des.src} alt="turo"/>
                         <p>{des.name}</p>
                     </div>
                    </Item> 
