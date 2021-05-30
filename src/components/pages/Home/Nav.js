@@ -1,13 +1,8 @@
 import React from 'react'
 import PersonOutlineIcon from '@material-ui/icons/PersonOutline';
 import './nav.css'
-import Button from '@material-ui/core/Button';
-import TextField from '@material-ui/core/TextField';
 import Dialog from '@material-ui/core/Dialog';
 import DialogActions from '@material-ui/core/DialogActions';
-import DialogContent from '@material-ui/core/DialogContent';
-import DialogContentText from '@material-ui/core/DialogContentText';
-import DialogTitle from '@material-ui/core/DialogTitle';
 
 export default function Nav() {
     return (
@@ -51,7 +46,7 @@ function FormDialogLogin() {
     return (
       <div>
         <button onClick={handleClickOpen} className="nav-btn">
-          <strong>Log in</strong>
+          Log in
         </button>
         <Dialog open={open} onClose={handleClose} aria-labelledby="form-dialog-title">
             <button onClick={handleClose} className="nav-cross">X</button>
@@ -102,7 +97,7 @@ function FormDialogSignUp() {
     return (
       <div>
         <button className="nav-btn" onClick={handleClickOpen}>
-          <strong>Sign Up</strong>
+          Sign Up
         </button>
         <Dialog open={open} onClose={handleClose} aria-labelledby="form-dialog-title">
           <button onClick={handleClose} className="nav-cross">X</button>

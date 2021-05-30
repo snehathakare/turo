@@ -28,7 +28,7 @@ function HostCarousel() {
                             <CardContent>
                                 <div className="host-card">
                                     <div className="host">
-                                        <img src={host.src} />
+                                        <img src={host.src} alt="turo hosts"/>
                                         <div className="host-info">
                                             <h3>{host.host_name}</h3>
                                             <span><strong>All-star host</strong></span>

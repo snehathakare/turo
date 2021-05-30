@@ -1,0 +1,32 @@
+.listing-nav-input input{
+    border-style:none none solid none;
+}
+.listing-search{
+    display: flex;
+    padding: 20px;
+}
+.listing-search div{
+    padding-left: 20px;
+}
+.listing-filters{
+   text-decoration: none;
+   margin: 0 15px;
+   white-space: nowrap;
+   font-size: 14px;
+   height: 26px;
+   line-height: 25px;
+   background-color: #FFFFFF;
+   color: #414143;
+   font-family: BasisGrotesque,Avenir,Helvetica Neue,Helvetica,sans-serif;
+   font-weight: 900;
+   outline: none;
+   position: relative;
+   text-align: center;
+   border: 1.5px solid #e7e7e8;
+   border-radius: 4px;
+   margin-right: 16px;
+   padding: 0 16px;
+}
+.listing-filter-stack{
+    padding: 10px;
+}
