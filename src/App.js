@@ -20,9 +20,9 @@ function App() {
       <Banner />
       <div className="app-content">
         <Heading1 text="The world’s largest car sharing marketplace"/>
-        <div className="flex">
+        {/* <div className="flex">
           <div className="carousel-container"><CarouselCard /></div>
-        </div>
+        </div> */}
         <div className="flex">
           <div className="carousel-container"><PictureCard /></div>
         </div>

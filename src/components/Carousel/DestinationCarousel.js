@@ -1,5 +1,5 @@
 import React from 'react'
-import './picture-card.css'
+import './destination.css'
 import Carousel from "react-elastic-carousel";
 import Item from "./Item";
 
@@ -20,7 +20,7 @@ function DestinationCarousel() {
               <Carousel itemsToShow={5}>
                 {destinations.map((des) => (
                        <Item key={des.name}>
-                           <div className="pic-card" key={des.name}>
+                           <div className="des-card" key={des.name}>
                             <img src={des.src} alt="turo"/>
                             <p>{des.name}</p>
                         </div>

@@ -3,7 +3,7 @@ import './experience.css'
 import Carousel from "react-elastic-carousel";
 import Item from "./Item";
 
-const destinations = [
+const experience = [
     { src: "http://resources.turo.com/f/81934/328x262/8e60a37cc1/image_experience_electric.jpg", name: "Electric" },
     { src: "http://resources.turo.com/f/81934/328x262/1d0c1a5bd7/image_experience_deluxesuperdeluxe.jpg", name: "Deluxe & Super Deluxe" },
     { src: "http://resources.turo.com/f/81934/328x262/0d5b069ff2/image_experience_petfriendly.jpg", name: "Pet-friendly" },
@@ -18,11 +18,11 @@ function Experience() {
         <div>
           <h2>Browse by experience</h2>
           <Carousel itemsToShow={3}>
-            {destinations.map((des) => (
-                   <Item max-width="100%" key={des.name}>
-                       <div className="pic-card">
-                        <img src={des.src} alt="turo"/>
-                        <p>{des.name}</p>
+            {experience.map((exp) => (
+                   <Item key={exp.name} maxWidth="100%">
+                       <div className="exp-card">
+                        <img src={exp.src} alt="turo"/>
+                        <p>{exp.name}</p>
                     </div>
                    </Item> 
                 ))}

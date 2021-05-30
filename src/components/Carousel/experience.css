@@ -1,3 +1,20 @@
-.rec-carousel-item{
-    /* width:200px; */
+.exp-card {
+    background-color: white;
+    color: gray;
+    text-align: center;
+    max-width: 1100px;
+    margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+}
+.exp-card img {
+    height: 200px;
+    width: 300px;
+}
+.exp-card .card{
+    margin-left:10px; 
+}
+.rec-pagination button{
+    display: none;
 }

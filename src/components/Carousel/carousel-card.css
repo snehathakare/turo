@@ -5,12 +5,13 @@
     margin-right: auto;
     flex:0 0;
     justify-content: center;
+    height: 100%;
 }
 .carousel-card-text{
     display: flex;
     flex-direction: column;
-    margin-left:40px;
-    width: 40%;
+    margin-left:20px;
+    width: 200%;
 }
 
 .primary-btn{

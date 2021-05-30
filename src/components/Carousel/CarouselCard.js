@@ -1,7 +1,8 @@
 import React from 'react'
-import Carousel from "react-elastic-carousel";
-import Item from "./Item";
+import "react-responsive-carousel/lib/styles/carousel.min.css"; // requires a loader
+import { Carousel } from 'react-responsive-carousel';
 import './carousel-card.css'
+import './support.css'
 
 const info = [
     { src: "http://resources.turo.com/f/81934/416x284/929b21c4fa/image_upgrade_416x285.jpg",
@@ -24,21 +25,21 @@ const info = [
 function CarouselCard() {
     return (
             <>
-            <div>
-            <Carousel itemsToShow={1}>
+            <div className="demo">
+                <Carousel showArrows>
                 {info.map((info) => (
-                    <Item maxWidth="100%">
+                    <>
                         <div className="carousel-card">
-                                <img src={info.src} alt="turo"/>
-                                <div className="carousel-card-text">
-                                    <h2>{info.heading}</h2>
-                                    <p>{info.text}</p>
-                                    <button className="primary-btn">Browse Cars</button>
-                                </div>
+                            <img alt="turo"  src={info.src} />
+                            <div className="carousel-card-text">
+                                <h2><p>{info.text}</p></h2>
+                                <p>{info.text}</p>
+                                <button className="primary-btn">Browse</button>
                             </div>
-                    </Item> 
-                    ))}
-            </Carousel>
+                        </div>
+                    </>
+                ))}
+                </Carousel>
             </div>
             </>
     )
