@@ -14,12 +14,14 @@ export default function Nav() {
                 <a href="/">Become a host</a>
                 <div className="nav-dropdown">
                     <a href="/">Learn More</a>
-                    <ul className="dropdown-content">
-                        <li>How Turo works</li>
-                        <li>Insurance & Protection</li>
-                        <li>Carculator</li>
-                        <li>Host Tools</li>
-                    </ul>
+                    <div className="dropdown-content">
+                      <ul>
+                          <li>How Turo works</li>
+                          <li>Insurance & Protection</li>
+                          <li>Carculator</li>
+                          <li>Host Tools</li>
+                      </ul>
+                    </div>
                 </div>
                 <FormDialogLogin />
                 <FormDialogSignUp />
