@@ -7,27 +7,28 @@ import CardContent from '@material-ui/core/CardContent';
 import CardMedia from '@material-ui/core/CardMedia';
 import Button from '@material-ui/core/Button';
 import Typography from '@material-ui/core/Typography';
+import StarRateIcon from '@material-ui/icons/StarRate';
 
 const carInfo = [{src:"https://d1zgdcrdir5wgt.cloudfront.net/media/vehicle/images/Rd_FCKsTRrau_ZhPWh1MHg.730x390.jpg", 
-        name:"Tesla Model S 2018", price:140, trips:"51" ,rating:"5", book_now: true, delivery: 'free'},
+        name:"Tesla Model S 2018", price:140, trips:"51" ,rating:"5.0", book_now: true, delivery: 'free'},
         {src:"https://d1zgdcrdir5wgt.cloudfront.net/media/vehicle/images/JFxpbWXsSPeTyVGajafUuw.730x390.jpg", 
-        name:"Tesla Model 3 2019", price:170, trips:"51" ,rating:"5", delivery: 'free'},,
+        name:"Tesla Model 3 2019", price:170, trips:"51" ,rating:"5.0", delivery: 'free'},,
         {src:"https://d1zgdcrdir5wgt.cloudfront.net/media/vehicle/images/oZeBOX5wRhugcdt3tta6nQ.730x390.jpg", 
-        name:"Mercedes-Benz", price:53, trips:"51" ,rating:"5",book_now: true},,
+        name:"Mercedes-Benz", price:53, trips:"51" ,rating:"5.0",book_now: true},,
         {src:"https://d1zgdcrdir5wgt.cloudfront.net/media/vehicle/images/ifykpaWSTwONE1qqUkjlig.730x390.jpg", 
-        name:"Audi A5 2018", price:100, trips:"51" ,rating:"5"},,
+        name:"Audi A5 2018", price:100, trips:"51" ,rating:"5.0"},,
         {src:"https://d1zgdcrdir5wgt.cloudfront.net/media/vehicle/images/Rd_FCKsTRrau_ZhPWh1MHg.730x390.jpg", 
-        name:"Tesla Model 2019", price:120, trips:"51" ,rating:"5", delivery: 'free'},
+        name:"Tesla Model 2019", price:120, trips:"51" ,rating:"5.0", delivery: 'free'},
         {src:"https://d1zgdcrdir5wgt.cloudfront.net/media/vehicle/images/Rd_FCKsTRrau_ZhPWh1MHg.730x390.jpg", 
-        name:"Tesla Model S 2018", price:140, trips:"51" ,rating:"5", delivery: 'free'},
+        name:"Tesla Model S 2018", price:140, trips:"51" ,rating:"5.0", delivery: 'free'},
         {src:"https://d1zgdcrdir5wgt.cloudfront.net/media/vehicle/images/JFxpbWXsSPeTyVGajafUuw.730x390.jpg", 
-        name:"Tesla Model 3 2019", price:170, trips:"51" ,rating:"5", delivery: 'free'},,
+        name:"Tesla Model 3 2019", price:170, trips:"51" ,rating:"5.0", delivery: 'free'},,
         {src:"https://d1zgdcrdir5wgt.cloudfront.net/media/vehicle/images/oZeBOX5wRhugcdt3tta6nQ.730x390.jpg", 
-        name:"Mercedes-Benz", price:53, trips:"51" ,rating:"5"},,
+        name:"Mercedes-Benz", price:53, trips:"51" ,rating:"4.0"},,
         {src:"https://d1zgdcrdir5wgt.cloudfront.net/media/vehicle/images/ifykpaWSTwONE1qqUkjlig.730x390.jpg", 
-        name:"Audi A5 2018", price:100, trips:"51" ,rating:"5", book_now: true},,
+        name:"Audi A5 2018", price:100, trips:"51" ,rating:"5.0", book_now: true},,
         {src:"https://d1zgdcrdir5wgt.cloudfront.net/media/vehicle/images/Rd_FCKsTRrau_ZhPWh1MHg.730x390.jpg", 
-        name:"Tesla Model 2019", price:120, trips:"51" ,rating:"5", delivery: 'free'},
+        name:"Tesla Model 2019", price:120, trips:"51" ,rating:"5.0", delivery: 'free'},
 ]
 
 const useStyles = makeStyles({
@@ -89,15 +90,13 @@ export default function CarList() {
                     <Typography gutterBottom variant="h5" component="h2">
                         {car.name}
                     </Typography>
-                    <Typography variant="body2" color="textSecondary" component="p">
-                    {car.rating} ({car.trips})
+                    <Typography className="car-rating" variant="body2" color="textSecondary" component="p">
+                    {car.rating}<StarRateIcon /> ({car.trips} trips)
                     </Typography>
                     </CardContent>
                 </CardActionArea>
                 <CardActions>
-                    <Button size="small" color="primary">
-                    {car.price}
-                    </Button>
+                    <h4>${car.price}/day</h4>
                 </CardActions>
               </Card>
           ))}

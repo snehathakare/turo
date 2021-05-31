@@ -1,0 +1,42 @@
+.root{
+    display: flex;
+    justify-content: center;
+    width: 60%;
+    flex-direction: column;
+    text-align: center;
+    margin-right: auto;
+    margin-left: auto;
+}
+.form-flex{
+    display: flex;
+    flex-direction: column;
+}
+.btn-listing{
+    background-color: #593cfb;
+    color: #fff;
+    border: 1px solid #593cfb;
+    padding: 10px;
+    margin: 10px;
+}
+.car-license{
+    justify-content: flex-start;
+    margin: 0;
+}
+.car-license p, input{
+    margin: 0 10px;
+}
+.MuiAccordionSummary-content{
+    margin:0 !important;   
+}
+.btn-listing-photo{
+    background-color: transparent;
+    padding: 5px;
+    margin: 10px;
+}
+.btn-listing-fb{
+    background-color: #3b5998;
+    color: #fff;
+    border: 1px solid #3b5998;
+    padding: 10px;
+    margin: 10px;
+}

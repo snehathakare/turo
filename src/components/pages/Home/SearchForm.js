@@ -1,6 +1,7 @@
 import React from 'react'
 import SearchIcon from '@material-ui/icons/Search';
 import './search.css'
+import { Redirect } from 'react-router';
 
 function SearchForm() {
     return (
@@ -24,7 +25,7 @@ function SearchForm() {
                         <input type="datetime-local" />
                     </div>
                 </div>
-                <div className="search-button"><SearchIcon /></div>
+                <button className="search-button"><SearchIcon /></button>
             </form>
         </div>
     )
