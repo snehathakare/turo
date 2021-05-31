@@ -11,6 +11,10 @@ import Avatar from '@material-ui/core/Avatar';
 import AddressForm from './AddressForm';
 import TextField from '@material-ui/core/TextField';
 import MenuItem from '@material-ui/core/MenuItem';
+import CarAvailablity from './CarAvailablity';
+import CarDetails from './CarDetails';
+import CarPhotos from './CarPhotos';
+import Payout from './Payout';
 
 function ListNewCar() {
     return (
@@ -99,27 +103,46 @@ export function SimpleAccordion() {
         </AccordionSummary>
         <AccordionDetails>
           <Typography>
-            <div className="form-flex car-license">
-              <p>Issuing country</p>
-              <input type="text" />
-              <p>License number</p>
-              <input type="number" />
-              <p>State</p>
-              <input type="text" />
+            <div className="form-flex-row car-license">
+              <div className="form-flex-col">
+                <p>Issuing country</p>
+                <input type="text" />
+              </div>
+              <div className="form-flex-col">
+                <p>License number</p>
+                <input type="number" />
+              </div>
+              <div className="form-flex-col">
+                <p>State</p>
+                <input type="text" />
+              </div> 
             </div>
-            <div className="form-flex car-license">
+            <h5>Enter your name exactly as it appears on your driver's license</h5>
+            <div className="form-flex-row car-license">
+            <div className="form-flex-col">
               <p>First name</p>
               <input type="text" />
-              <p>Last name</p>
-              <input type="text" />
-              <p>Middle name</p>
-              <input type="text" />
             </div>
-            <div className="form-flex car-license">
-              <p>Expiration date</p>
+              <div className="form-flex-col">
+                <p>Last name</p>
+                <input type="text" />
+              </div>
+              <div className="form-flex-col">
+                <p>Middle name</p>
+                <input type="text" />
+              </div>
+              
+            </div>
+            <div className="form-flex-row car-license">
+            <div className="form-flex-col">
+              <h5>Expiration date</h5>
               <input type="date" />
-              <p>Date of birth</p>
+            </div>
+            <div className="form-flex-col">
+              <h5>Date of birth</h5>
               <input type="date" />
+            </div>
+              
             </div>
             <button className="btn-listing">Next</button>
           </Typography>
@@ -149,8 +172,7 @@ export function SimpleAccordion() {
         </AccordionSummary>
         <AccordionDetails>
           <Typography>
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse malesuada lacus ex,
-            sit amet blandit leo lobortis eget.
+            <CarAvailablity />
           </Typography>
         </AccordionDetails>
       </Accordion>
@@ -164,8 +186,7 @@ export function SimpleAccordion() {
         </AccordionSummary>
         <AccordionDetails>
           <Typography>
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse malesuada lacus ex,
-            sit amet blandit leo lobortis eget.
+            <CarDetails />
           </Typography>
         </AccordionDetails>
       </Accordion>
@@ -179,8 +200,7 @@ export function SimpleAccordion() {
         </AccordionSummary>
         <AccordionDetails>
           <Typography>
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse malesuada lacus ex,
-            sit amet blandit leo lobortis eget.
+           <CarPhotos />
           </Typography>
         </AccordionDetails>
       </Accordion>
@@ -194,8 +214,7 @@ export function SimpleAccordion() {
         </AccordionSummary>
         <AccordionDetails>
           <Typography>
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse malesuada lacus ex,
-            sit amet blandit leo lobortis eget.
+            <Payout />
           </Typography>
         </AccordionDetails>
       </Accordion>
@@ -268,7 +287,7 @@ export function MultilineTextFields() {
 
   return (
     <form className={classes.root} noValidate autoComplete="off">
-      <div className="form-flex">
+      <div className="form-flex-col">
         <span>What is your primary financial goal for sharing this car on Turo?</span>
         <TextField
           id="filled-select-currency"

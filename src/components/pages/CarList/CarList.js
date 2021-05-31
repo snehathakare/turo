@@ -8,6 +8,8 @@ import CardMedia from '@material-ui/core/CardMedia';
 import Button from '@material-ui/core/Button';
 import Typography from '@material-ui/core/Typography';
 import StarRateIcon from '@material-ui/icons/StarRate';
+import Slider from '@material-ui/core/Slider';
+import './listing.css';
 
 const carInfo = [{src:"https://d1zgdcrdir5wgt.cloudfront.net/media/vehicle/images/Rd_FCKsTRrau_ZhPWh1MHg.730x390.jpg", 
         name:"Tesla Model S 2018", price:140, trips:"51" ,rating:"5.0", book_now: true, delivery: 'free'},
@@ -47,7 +49,7 @@ export default function CarList() {
 
   const filterPrice = (price) => {
     const updatedItems = carInfo.filter((car) =>{
-      return car.price === price
+      return car.price > price
     })
     setCars(updatedItems);
   }
@@ -64,6 +66,7 @@ export default function CarList() {
       return car.delivery === del
     })
     setCars(updatedItems);
+    //onClick={() => filterPrice(140)}
   }
 
   return(
@@ -71,7 +74,8 @@ export default function CarList() {
           <header className="nav">
           <div className="listing-filter-stack">
               <button className="listing-filters">Sort by</button>
-              <button className="listing-filters" onClick={() => filterPrice(140)}>Price</button>
+              <div className="price-btn"><button className="listing-filters">Price</button></div>
+              <div className="slider-dropdown"><DiscreteSlider /></div>
               <button className="listing-filters" onClick={() => filterBooking(true)}>Book Instantly</button>
               <button className="listing-filters" onClick={() => filterDelivery('free')}>Delivery</button>
               <button className="listing-filters">Distance included</button>
@@ -106,7 +110,31 @@ export default function CarList() {
     
 }
 
+function valuetext(value) {
+  return `$${value}`;
+}
 
+export function DiscreteSlider() {
+  const classes = useStyles();
+
+  return (
+    <div className={classes.root}>
+      <Typography id="discrete-slider" gutterBottom>
+        Price
+      </Typography>
+      <Slider
+        defaultValue={30}
+        getAriaValueText={valuetext}
+        aria-labelledby="discrete-slider"
+        valueLabelDisplay="auto"
+        step={50}
+        marks
+        min={10}
+        max={1000}
+      />
+    </div>
+  );
+}
 
 
 

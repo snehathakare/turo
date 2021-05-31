@@ -7,9 +7,12 @@
     margin-right: auto;
     margin-left: auto;
 }
-.form-flex{
+.form-flex-col{
     display: flex;
     flex-direction: column;
+}
+.form-flex-row{
+    display: flex;
 }
 .btn-listing{
     background-color: #593cfb;
