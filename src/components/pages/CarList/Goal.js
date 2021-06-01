@@ -1,20 +1,8 @@
 import React from 'react'
-import ListingNav from './ListingNav'
 import { makeStyles } from '@material-ui/core/styles';
-import Accordion from '@material-ui/core/Accordion';
-import AccordionSummary from '@material-ui/core/AccordionSummary';
-import AccordionDetails from '@material-ui/core/AccordionDetails';
-import Typography from '@material-ui/core/Typography';
-import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
 import './new-car.css'
-import Avatar from '@material-ui/core/Avatar';
-import AddressForm from './AddressForm';
 import TextField from '@material-ui/core/TextField';
 import MenuItem from '@material-ui/core/MenuItem';
-import CarAvailablity from './CarAvailablity';
-import CarDetails from './CarDetails';
-import CarPhotos from './CarPhotos';
-import Payout from './Payout';
 
 const finGoals = [
     {

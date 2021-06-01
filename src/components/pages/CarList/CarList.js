@@ -5,7 +5,6 @@ import CardActionArea from '@material-ui/core/CardActionArea';
 import CardActions from '@material-ui/core/CardActions';
 import CardContent from '@material-ui/core/CardContent';
 import CardMedia from '@material-ui/core/CardMedia';
-import Button from '@material-ui/core/Button';
 import Typography from '@material-ui/core/Typography';
 import StarRateIcon from '@material-ui/icons/StarRate';
 import Slider from '@material-ui/core/Slider';
@@ -14,9 +13,9 @@ import './listing.css';
 const carInfo = [{src:"https://d1zgdcrdir5wgt.cloudfront.net/media/vehicle/images/Rd_FCKsTRrau_ZhPWh1MHg.730x390.jpg", 
         name:"Tesla Model S 2018", price:140, trips:"51" ,rating:"5.0", book_now: true, delivery: 'free'},
         {src:"https://d1zgdcrdir5wgt.cloudfront.net/media/vehicle/images/JFxpbWXsSPeTyVGajafUuw.730x390.jpg", 
-        name:"Tesla Model 3 2019", price:170, trips:"51" ,rating:"5.0", delivery: 'free'},,
+        name:"Tesla Model 3 2019", price:170, trips:"51" ,rating:"5.0", delivery: 'free'},
         {src:"https://d1zgdcrdir5wgt.cloudfront.net/media/vehicle/images/oZeBOX5wRhugcdt3tta6nQ.730x390.jpg", 
-        name:"Mercedes-Benz", price:53, trips:"51" ,rating:"5.0",book_now: true},,
+        name:"Mercedes-Benz", price:53, trips:"51" ,rating:"5.0",book_now: true},
         {src:"https://d1zgdcrdir5wgt.cloudfront.net/media/vehicle/images/ifykpaWSTwONE1qqUkjlig.730x390.jpg", 
         name:"Audi A5 2018", price:100, trips:"51" ,rating:"5.0"},,
         {src:"https://d1zgdcrdir5wgt.cloudfront.net/media/vehicle/images/Rd_FCKsTRrau_ZhPWh1MHg.730x390.jpg", 
@@ -24,11 +23,11 @@ const carInfo = [{src:"https://d1zgdcrdir5wgt.cloudfront.net/media/vehicle/image
         {src:"https://d1zgdcrdir5wgt.cloudfront.net/media/vehicle/images/Rd_FCKsTRrau_ZhPWh1MHg.730x390.jpg", 
         name:"Tesla Model S 2018", price:140, trips:"51" ,rating:"5.0", delivery: 'free'},
         {src:"https://d1zgdcrdir5wgt.cloudfront.net/media/vehicle/images/JFxpbWXsSPeTyVGajafUuw.730x390.jpg", 
-        name:"Tesla Model 3 2019", price:170, trips:"51" ,rating:"5.0", delivery: 'free'},,
+        name:"Tesla Model 3 2019", price:170, trips:"51" ,rating:"5.0", delivery: 'free'},
         {src:"https://d1zgdcrdir5wgt.cloudfront.net/media/vehicle/images/oZeBOX5wRhugcdt3tta6nQ.730x390.jpg", 
-        name:"Mercedes-Benz", price:53, trips:"51" ,rating:"4.0"},,
+        name:"Mercedes-Benz", price:53, trips:"51" ,rating:"4.0"},
         {src:"https://d1zgdcrdir5wgt.cloudfront.net/media/vehicle/images/ifykpaWSTwONE1qqUkjlig.730x390.jpg", 
-        name:"Audi A5 2018", price:100, trips:"51" ,rating:"5.0", book_now: true},,
+        name:"Audi A5 2018", price:100, trips:"51" ,rating:"5.0", book_now: true},
         {src:"https://d1zgdcrdir5wgt.cloudfront.net/media/vehicle/images/Rd_FCKsTRrau_ZhPWh1MHg.730x390.jpg", 
         name:"Tesla Model 2019", price:120, trips:"51" ,rating:"5.0", delivery: 'free'},
 ]
@@ -66,7 +65,6 @@ export default function CarList() {
       return car.delivery === del
     })
     setCars(updatedItems);
-    //onClick={() => filterPrice(140)}
   }
 
   return(
@@ -74,7 +72,7 @@ export default function CarList() {
           <header className="nav">
           <div className="listing-filter-stack">
               <button className="listing-filters">Sort by</button>
-              <div className="price-btn"><button className="listing-filters">Price</button></div>
+              <div className="price-btn"><button className="listing-filters" onClick={() => filterPrice(140)}>Price</button></div>
               <div className="slider-dropdown"><DiscreteSlider /></div>
               <button className="listing-filters" onClick={() => filterBooking(true)}>Book Instantly</button>
               <button className="listing-filters" onClick={() => filterDelivery('free')}>Delivery</button>
@@ -98,10 +96,10 @@ export default function CarList() {
                     {car.rating}<StarRateIcon /> ({car.trips} trips)
                     </Typography>
                     </CardContent>
-                </CardActionArea>
-                <CardActions>
+                    <CardActions>
                     <h4>${car.price}/day</h4>
-                </CardActions>
+                    </CardActions>
+                </CardActionArea>
               </Card>
           ))}
       </div>

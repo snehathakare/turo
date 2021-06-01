@@ -32,10 +32,11 @@
     border: 0;
     color: #FFFFFF;
     cursor: pointer;
-    width:15%;
+    width:12%;
     display: flex;
     justify-content: center;
     align-items: center;
+    margin:5px;
 }
 .search-logo{
     height:24px

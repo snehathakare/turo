@@ -1,7 +1,6 @@
 import React from 'react'
 import SearchIcon from '@material-ui/icons/Search';
 import './search.css'
-import { Redirect } from 'react-router';
 
 function SearchForm() {
     return (
