@@ -26,13 +26,13 @@ export default function AddressForm() {
             <h2 className="center">Address</h2>
             <span>Please enter a specific location</span>
             <span>Country</span>
-            <input type="text" placeholder="Email" />
+            <input type="text" placeholder="country" />
             <span>Street Address</span>
-            <input type="text" placeholder="Password" />
+            <input type="text" placeholder="street" />
             <span>City</span>
-            <input type="text" placeholder="Password" />
+            <input type="text" placeholder="city" />
             <span>Zip code/ Postal code</span>
-            <input type="text" placeholder="Password" />
+            <input type="text" placeholder="zipcode" />
           </div>
           <DialogActions className="button-stack">
             <button onClick={handleClose} className="btn-long">

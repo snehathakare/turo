@@ -1,0 +1,9 @@
+.avail-flex{
+    display: flex;
+    flex-direction: column;
+    
+}
+.notice-flex{
+    display: flex;
+    justify-content: center;   
+}

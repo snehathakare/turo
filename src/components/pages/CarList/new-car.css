@@ -1,11 +1,12 @@
 .root{
     display: flex;
     justify-content: center;
-    width: 60%;
+    width: 40%;
     flex-direction: column;
     text-align: center;
     margin-right: auto;
     margin-left: auto;
+    border-bottom: 1px solid rgba(181,180,186,.25);
 }
 .form-flex-col{
     display: flex;

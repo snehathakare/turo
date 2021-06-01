@@ -6,10 +6,13 @@ import FormGroup from '@material-ui/core/FormGroup';
 import FormControlLabel from '@material-ui/core/FormControlLabel';
 import FormHelperText from '@material-ui/core/FormHelperText';
 import Checkbox from '@material-ui/core/Checkbox';
+import './car-details.css'
+import Tips from './Tips';
 
 const useStyles = makeStyles((theme) => ({
   root: {
     display: 'flex',
+    flexDirection:'column',
   },
   formControl: {
     margin: theme.spacing(3),
@@ -18,50 +21,76 @@ const useStyles = makeStyles((theme) => ({
 
 function CarDetails() {
   const classes = useStyles();
-  const [state, setState] = React.useState({
-    gilad: true,
-    jason: false,
-    antoine: false,
-  });
-
-  const handleChange = (event) => {
-    setState({ ...state, [event.target.name]: event.target.checked });
-  };
-
-  const { gilad, jason, antoine } = state;
-  const error = [gilad, jason, antoine].filter((v) => v).length !== 2;
     return (
         <div className={classes.root}>
-        <FormControl component="fieldset" className={classes.formControl}>
           <FormLabel component="legend">Car Features</FormLabel>
-          <FormGroup>
-            <FormControlLabel
-              control={<Checkbox checked={gilad} onChange={handleChange} name="gilad" />}
-              label="All Wheel drive"
-            />
-            <FormControlLabel
-              control={<Checkbox checked={jason} onChange={handleChange} name="jason" />}
-              label="Android Auto"
-            />
-            <FormControlLabel
-              control={<Checkbox checked={antoine} onChange={handleChange} name="antoine" />}
-              label="USB Charger"
-            />
-             <FormControlLabel
-              control={<Checkbox checked={gilad} onChange={handleChange} name="gilad" />}
-              label="Sunroof"
-            />
-            <FormControlLabel
-              control={<Checkbox checked={jason} onChange={handleChange} name="jason" />}
-              label="Pet Friendly"
-            />
-            <FormControlLabel
-              control={<Checkbox checked={antoine} onChange={handleChange} name="antoine" />}
-              label="Bluetooth"
-            />
-          </FormGroup>
-        </FormControl>
-            
+          <div className="car-checkbox">
+              <FormGroup>
+                <FormControlLabel
+                  control={<Checkbox />}
+                  label="All Wheel drive"
+                />
+                <FormControlLabel
+                  control={<Checkbox />}
+                  label="Android Auto"
+                />
+                <FormControlLabel
+                  control={<Checkbox />}
+                  label="USB Charger"
+                />
+                <FormControlLabel
+                  control={<Checkbox />}
+                  label="Sunroof"
+                />
+                <FormControlLabel
+                  control={<Checkbox />}
+                  label="Pet Friendly"
+                />
+                <FormControlLabel
+                  control={<Checkbox />}
+                  label="Bluetooth"
+                />
+              </FormGroup>
+              <FormGroup>
+                <FormControlLabel
+                  control={<Checkbox />}
+                  label="All Wheel drive"
+                />
+                <FormControlLabel
+                  control={<Checkbox />}
+                  label="Android Auto"
+                />
+                <FormControlLabel
+                  control={<Checkbox />}
+                  label="USB Charger"
+                />
+                <FormControlLabel
+                  control={<Checkbox />}
+                  label="Sunroof"
+                />
+                <FormControlLabel
+                  control={<Checkbox />}
+                  label="Pet Friendly"
+                />
+                <FormControlLabel
+                  control={<Checkbox />}
+                  label="Bluetooth"
+                />
+              </FormGroup>
+          </div>
+          <div className="car-description">
+           <div>
+            <h4>Description</h4>
+              <p>Tell guests what makes your car unique and why they'll love driving it.</p>
+           </div>
+            <div className="car-description">
+              <div className="car-checkbox"><Tips text="Listings with descriptions of at least 100 words are up to three times more likely to get booked."/></div>
+              <textarea placeholder="Include car description"></textarea>
+            </div>
+          </div>
+          <div className="car-checkbox">
+              <button className="primary-btn">Next</button>
+          </div>
         </div>
     )
 }

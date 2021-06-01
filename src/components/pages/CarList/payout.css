@@ -1,0 +1,9 @@
+.payout-div{
+    flex-direction: column;
+    border-radius: 4px;
+    padding: 16px 16px 16px 12px;
+    background-color: rgb(244, 244, 244);
+    border: 1px solid rgb(231, 231, 232);
+    display: flex;
+    margin-top:20px;
+}

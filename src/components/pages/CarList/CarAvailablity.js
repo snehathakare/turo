@@ -1,22 +1,11 @@
 import React from 'react'
-import { makeStyles } from '@material-ui/core/styles';
 import MenuItem from '@material-ui/core/MenuItem';
-import FormHelperText from '@material-ui/core/FormHelperText';
 import FormControl from '@material-ui/core/FormControl';
 import Select from '@material-ui/core/Select';
-
-const useStyles = makeStyles((theme) => ({
-  formControl: {
-    margin: theme.spacing(1),
-    minWidth: 120,
-  },
-  selectEmpty: {
-    marginTop: theme.spacing(2),
-  },
-}));
+import Tips from './Tips';
+import './availablity.css'
 
 export default function CarAvailablity() {
-  const classes = useStyles();
   const [notice, setNotice] = React.useState('');
   const [min, setMinTrip] = React.useState('');
   const [max, setMaxTrip] = React.useState('');
@@ -33,12 +22,12 @@ export default function CarAvailablity() {
 
     return (
         <div>
-            <div>
+            <div className="avail-flex">
                 <h4>Advance Notice</h4>
                 <span>How much advance notice do you need before a trip starts?</span>
-                <div>
-                    <FormControl variant="outlined" className={classes.formControl}>
-                        <p>Advance notice at home</p>
+                <div className="notice-flex">
+                    <FormControl variant="outlined">
+                        <h5>Advance notice at home</h5>
                         <Select
                         labelId="demo-simple-select-outlined-label"
                         id="demo-simple-select-outlined"
@@ -53,14 +42,15 @@ export default function CarAvailablity() {
                         <MenuItem value={30}>12 hours</MenuItem>
                         </Select>
                     </FormControl>
+                    <Tips text="51% of trips at home locations are booked on shorter notice than your current requirement of 1 day."/>
                 </div>
             </div>
             <div>
                 <h4>Trip Duration</h4>
                 <span>What’s the shortest and longest possible trip you’ll accept?</span>
-                <div>
-                    <FormControl variant="outlined" className={classes.formControl}>
-                        <p>Minimum trip duration</p>
+                <div className="notice-flex">
+                    <FormControl variant="outlined">
+                        <h5>Minimum trip duration</h5>
                         <Select
                         labelId="demo-simple-select-outlined-label"
                         id="demo-simple-select-outlined"
@@ -75,12 +65,13 @@ export default function CarAvailablity() {
                         <MenuItem value={30}>3 days</MenuItem>
                         </Select>
                     </FormControl>
+                    <Tips text="A 1 day minimum opens you up to 100% of trips!"/>
                 </div>
             </div>
             <div>
-                <div>
-                    <FormControl variant="outlined" className={classes.formControl}>
-                        <p>Maximum trip duration</p>
+                <div className="notice-flex">
+                    <FormControl variant="outlined">
+                        <h5>Maximum trip duration</h5>
                         <Select
                         labelId="demo-simple-select-outlined-label"
                         id="demo-simple-select-outlined"
@@ -95,9 +86,12 @@ export default function CarAvailablity() {
                         <MenuItem value={30}>12 weeks</MenuItem>
                         <MenuItem value={10}>6 months</MenuItem>
                         <MenuItem value={20}>Any</MenuItem>
-                        </Select>
+                        </Select>   
                     </FormControl>
+                    <Tips text="1% of booked trips are longer than your current maximum of 1 month."/>
+                    
                 </div>
+                <button className="primary-btn">Next</button>
             </div>
         </div>
     )

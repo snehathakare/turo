@@ -9,12 +9,12 @@ import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
 import './new-car.css'
 import Avatar from '@material-ui/core/Avatar';
 import AddressForm from './AddressForm';
-import TextField from '@material-ui/core/TextField';
-import MenuItem from '@material-ui/core/MenuItem';
 import CarAvailablity from './CarAvailablity';
 import CarDetails from './CarDetails';
 import CarPhotos from './CarPhotos';
 import Payout from './Payout';
+import { Goal } from './Goal';
+import Footer from '../Home/Footer.js'
 
 function ListNewCar() {
     return (
@@ -50,11 +50,12 @@ export function SimpleAccordion() {
           <Typography className={classes.heading}><h4>Your car</h4></Typography>
         </AccordionSummary>
         <AccordionDetails>
-          <Typography className="form-flex">
-            <h5>Where is your car located?</h5>
-            <input type="text" placeHolder="Enter address"/>
-            <AddressForm />
-            
+          <Typography>
+            <div className="form-flex-col">
+              <h5>Where is your car located?</h5>
+              <input type="text" placeHolder="Enter address"/>
+              <AddressForm />
+            </div>
           </Typography>
         </AccordionDetails>
       </Accordion>
@@ -84,12 +85,12 @@ export function SimpleAccordion() {
         </AccordionSummary>
         <AccordionDetails>
           <Typography>
-            <div className="form-flex">
+            <div className="form-flex-col">
               <p>Enter your phone number</p>
               <input type="text" placeholder="Enter number"/>
             </div>
             <button className="btn-listing">Next</button>
-            <a href="/">Change your mobile number</a>
+            <a href="/">Change your number</a>
           </Typography>
         </AccordionDetails>
       </Accordion>
@@ -158,7 +159,7 @@ export function SimpleAccordion() {
         </AccordionSummary>
         <AccordionDetails>
           <Typography>
-            <MultilineTextFields />
+            <Goal />
           </Typography>
         </AccordionDetails>
       </Accordion>
@@ -218,119 +219,7 @@ export function SimpleAccordion() {
           </Typography>
         </AccordionDetails>
       </Accordion>
+      <Footer />
     </div>
-  );
-}
-
-//select inputs
-
-
-const finGoals = [
-  {
-    value: 'Cover you car payment'
-  },
-  {
-    value: 'Side business'
-
-  },
-  {
-    value: 'Not sure yet'
-  },
-];
-const usage = [
-  {
-    value: 'Never'
-  },
-  {
-    value: 'Rarely: Once a month'
-
-  },
-  {
-    value: 'Sometimes: Fortnightly'
-  },
-  {
-    value: 'Often: Twice a week'
-  },
-  {
-    value: 'Always: Everyday'
-  },
-];
-const frequency = [
-  {
-    value: 'Not sure yet'
-  },
-  {
-    value: 'As often as possible'
-
-  },
-  {
-    value: 'Rarely'
-  },
-];
-
-
-export function MultilineTextFields() {
-  const classes = useStyles();
-  const [currency, setCurrency] = React.useState('Select');
-  const [share, setUsage] = React.useState(usage);
-  const [freq, setFrequency] = React.useState(frequency);
-
-  const handleChange = (event) => {
-    setCurrency(event.target.value);
-  };
-  const handleChangeUsage = (event) => {
-    setUsage(event.target.value);
-  };
-  const handleChangeFrequency = (event) => {
-    setFrequency(event.target.value);
-  };
-
-  return (
-    <form className={classes.root} noValidate autoComplete="off">
-      <div className="form-flex-col">
-        <span>What is your primary financial goal for sharing this car on Turo?</span>
-        <TextField
-          id="filled-select-currency"
-          select
-          value={currency}
-          onChange={handleChange}
-          variant="filled"
-        >
-          {finGoals.map((option) => (
-            <MenuItem key={option.value} value={option.value}>
-              {option.value}
-            </MenuItem>
-          ))}
-        </TextField>
-        <span>How often do you or your family currently use this car?</span>
-        <TextField
-          id="filled-select-currency"
-          select
-          value={share}
-          onChange={handleChangeUsage}
-          variant="filled"
-        >
-          {usage.map((option) => (
-            <MenuItem key={option.value} value={option.value}>
-              {option.value}
-            </MenuItem>
-          ))}
-        </TextField>
-        <span>How often do you want to share your car?</span>
-        <TextField
-          id="filled-select-currency"
-          select
-          value={freq}
-          onChange={handleChangeFrequency}
-          variant="filled"
-        >
-          {frequency.map((option) => (
-            <MenuItem key={option.value} value={option.value}>
-              {option.value}
-            </MenuItem>
-          ))}
-        </TextField>
-      </div>
-    </form>
   );
 }
