@@ -32,7 +32,7 @@ function Features() {
     const linkName=readMore?'Less':'More'
     return (
         <div className="App">
-        <a className="read-more-link" onClick={()=>{setReadMore(!readMore)}}><button className="nav-btn-outlined">{linkName}</button></a>
+        <button className="read-more-link nav-btn-outlined" onClick={()=>{setReadMore(!readMore)}}>{linkName}</button>
         {readMore && extraContent}
         </div>
     );

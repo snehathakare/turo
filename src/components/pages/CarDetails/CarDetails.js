@@ -79,11 +79,13 @@ function CarDetails() {
                             <h4>Hosted by</h4>
                         </td>
                         <td className="details-flex">
-                            <Avatar />
-                            <div>
-                                <h3>Owner</h3>
-                                <p>Joined Jul 2018 . 4 trips</p>
-                                <p>Typically responds in 8 minutes</p>
+                            <div className="features-flex">
+                                <Avatar />
+                                <div className="owner-details">
+                                    <h3>Owner</h3>
+                                    <p>Joined Jul 2018 . 4 trips</p>
+                                    <p>Typically responds in 8 minutes</p>
+                                </div>
                             </div>
                             <div className="details-flex">
                                 <p>Paul has completed training on enhanced cleaning and disinfection practices.</p>

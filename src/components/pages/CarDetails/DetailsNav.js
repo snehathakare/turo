@@ -17,7 +17,7 @@ function DetailsNav() {
             </div>
             <div className="nav-right-links">
                 <p><strong>$price</strong>/day</p> 
-                <button className="scroll-nav-btn">Continue</button>   
+                <button className="scroll-nav-btn">Check Availability</button>   
             </div>
         </header>
     )
