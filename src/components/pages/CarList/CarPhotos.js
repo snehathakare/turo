@@ -26,7 +26,10 @@ function CarPhotos() {
             </div>
             <CarCarousel />
             <h6>Photos must be at least 640px by 320px and smaller than 10mb</h6>
-            <button className="primary-btn">Add Photos</button>
+            <div>
+                <input accept="image/*" id="icon-button-file" type="file" style={{display:'none'}}/>
+                <label className="primary-btn" htmlFor="icon-button-file">Add Photos</label>
+            </div>
         </div>
     )
 }
