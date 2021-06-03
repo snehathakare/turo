@@ -1,27 +1,24 @@
 import React from 'react'
 import "react-responsive-carousel/lib/styles/carousel.min.css"; // requires a loader
 import { Carousel } from 'react-responsive-carousel';
+import './car-carousel.css'
 
 function CarDetailCarousel() {
     return (
-        <div>
-            <div className="demo">
-            <Carousel infiniteLoop>
-                <div>
-                    <img alt="turo"  src="https://resources.turo.com/f/81934/920x502/4ef0c8aebb/dennis-b-2x.jpg" />
-                </div>
-                <div>
-                    <img alt="turo" src="https://resources.turo.com/f/81934/920x502/aa535d2a91/michael-c-2x.jpg" />
-                </div>
-                <div>
-                    <img alt="turo" src="https://resources.turo.com/f/81934/920x502/56c9fd10ee/summer-p-2x.jpg" />
-                </div>
-                <div>
-                    <img alt="turo" src="https://resources.turo.com/f/81934/920x502/81e2193486/vernon-b-2x.jpg" />
-                </div>
-            </Carousel>
-        </div>
-        </div>
+        <Carousel infiniteLoop>
+            <div>
+                <img alt="turo"  src="https://d1zgdcrdir5wgt.cloudfront.net/media/vehicle/images/1r8WMPz-SdijEYaYYC8THw.1440x700.jpg" />
+            </div>
+            <div>
+                <img alt="turo" src="https://d1zgdcrdir5wgt.cloudfront.net/media/vehicle/images/ysK2UJIAS_SBqZmd-UbNTw.1440x700.jpg" />
+            </div>
+            <div>
+                <img alt="turo" src="https://d1zgdcrdir5wgt.cloudfront.net/media/vehicle/images/FVSUiPeXTfiMytP_pyVY2g.1440x700.jpg" />
+            </div>
+            <div>
+                <img alt="turo" src="https://d1zgdcrdir5wgt.cloudfront.net/media/vehicle/images/gg2wnf2YQ06utI-B7B_lvg.1440x700.jpg" />
+            </div>
+        </Carousel>
     )
 }
 

@@ -15,7 +15,7 @@ function CarDetailForm() {
                 <label>Pickup & return location</label>
                 <input type="text" />
             </div>
-            <button className="primary-btn">Continue</button>
+            <button className="scroll-nav-btn btn-long">Continue</button>
         </div>
     )
 }

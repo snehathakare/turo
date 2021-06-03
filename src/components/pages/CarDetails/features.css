@@ -1,0 +1,8 @@
+.features-col > tr > td{
+    display: flex;
+    align-items: center;
+}
+.features-row > tr{
+    display: flex;
+    margin: 10px auto;
+}

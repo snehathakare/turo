@@ -19,3 +19,30 @@
     display: flex;
     justify-content: center;
 }
+.scroll-nav{
+    width:100%;
+    display: flex;
+    background-color: #FFFFFF;
+    height: 60px;
+    padding: 0 16px;
+    box-shadow: 0 2px 9px -3px rgb(0 0 0 / 12%);
+}
+.scroll-nav-btn{
+    display: inline-block;
+    height: 50px;
+    line-height: 49px;
+    padding: 0 18px;
+    text-align: center;
+    vertical-align: top;
+    background-color: #593CFB;
+    border: 1px solid #593CFB;
+    color: #FFFFFF;
+    font-size: 18px;
+    margin: 10px;
+}
+.scroll-left-links a{
+    padding: 0 20px;
+    text-decoration: none;
+    color: rgb(137, 137, 137);
+    font-size: 12px;
+}
