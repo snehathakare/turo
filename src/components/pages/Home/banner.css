@@ -1,0 +1,9 @@
+.banner-img {
+    background-position: 0 0;
+    background-repeat: no-repeat;
+    height: 400px;
+    background-position-x: center;
+    background-position-y: center;
+    width: 100%;
+    position: absolute;
+}

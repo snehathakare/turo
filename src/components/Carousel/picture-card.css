@@ -1,0 +1,28 @@
+.pic-card {
+    background-color: white;
+    color: gray;
+    text-align: center;
+    max-width: 1100px;
+    margin: 0 auto;
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    height: 100%;
+}
+.pic-card img {
+    height: 180px;
+    width: 190px;
+}
+.pic-card img:hover {
+    height: 170px;
+    width: 190px;
+}
+.pic-card .card{
+    margin-left:10px; 
+}
+.pic-card .card:hover{
+    transform: translateY(-10px);
+}
+.rec-pagination button{
+    display: none;
+}

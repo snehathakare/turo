@@ -1,0 +1,8 @@
+.car-description{
+    display: flex;
+    flex-direction: column;
+}
+.car-checkbox{
+    display: flex;
+    justify-content: center;
+}

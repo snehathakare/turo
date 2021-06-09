@@ -1,0 +1,13 @@
+.app-content{
+    position: relative;
+    top: 345px;
+}
+.carousel-container{
+    width: 1112px;
+}
+.flex{
+    display: flex;
+    justify-content: center;
+    margin: 60px 0;
+}
+

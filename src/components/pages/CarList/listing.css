@@ -1,0 +1,100 @@
+.listing-nav-input input{
+    border-style:none none solid none;
+}
+.listing-search{
+    display: flex;
+    padding: 20px;
+}
+.listing-search div{
+    padding-left: 20px;
+}
+.listing-filters{
+   text-decoration: none;
+   margin: 0 15px;
+   white-space: nowrap;
+   font-size: 14px;
+   height: 26px;
+   line-height: 25px;
+   background-color: #FFFFFF;
+   color: #414143;
+   font-family: BasisGrotesque,Avenir,Helvetica Neue,Helvetica,sans-serif;
+   font-weight: 900;
+   outline: none;
+   position: relative;
+   text-align: center;
+   border: 1.5px solid #e7e7e8;
+   border-radius: 4px;
+   margin-right: 16px;
+   padding: 0 16px;
+}
+.listing-filter-stack{
+    padding: 10px;
+}
+.car-list{
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    padding: 20px;
+}
+.car-rating{
+    display: flex;
+    justify-content: flex-start;
+}
+.price-btn button:hover .slider-dropdown {
+    display: block;
+}
+.price-btn{
+    position: relative;
+    display: inline-block;
+}
+.slider-dropdown{
+    display: none;
+    position: absolute;
+    background-color: #f1f1f1;
+    min-width: 160px;
+    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+    z-index: 1;
+}
+
+.paginationBttns {
+list-style: none;
+display: flex;
+justify-content: center;
+}
+
+.paginationBttns a {
+padding: 10px;
+margin: 8px;
+border-radius: 5px;
+border: 1px solid #000;
+color: #000;
+cursor: pointer;
+}
+
+.paginationBttns a:hover {
+color: white;
+background-color: #000;
+}
+
+.paginationActive a {
+color: white;
+background-color: #000;
+}
+
+.paginationDisabled a {
+color: grey;
+background-color: #dddddd;
+}
+
+.paginationContent{
+    display: flex;
+    justify-content: center;
+    width: 80%;
+    height: 40px;
+    
+    
+}
+
+.paginationContent > select{
+    margin: 8px;
+}

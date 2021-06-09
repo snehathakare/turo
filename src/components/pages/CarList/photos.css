@@ -1,0 +1,8 @@
+.car-photo-info{
+    display: flex;
+    margin: 10px 0;
+    justify-content: center;
+}
+.car-photo-info p{
+   padding: 10px;
+}
