@@ -39,7 +39,7 @@ function Home() {
           <div className="carousel-container"><HostCarousel /></div>
         </div>
         <SupportCarousel />
-        <div className="flex"><Footer /></div>
+        <div className="flex footer-bg"><Footer /></div>
       </div>
     </div>
   );

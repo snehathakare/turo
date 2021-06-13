@@ -10,4 +10,12 @@
     justify-content: center;
     margin: 60px 0;
 }
-
+.footer-bg{
+    background-color: rgb(244, 244, 244);
+}
+.small-para{
+    font-size:12px;
+}
+.text-light{
+    color:rgb(137, 137, 137);
+}

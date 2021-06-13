@@ -17,7 +17,7 @@ const carInfo = [{src:"https://d1zgdcrdir5wgt.cloudfront.net/media/vehicle/image
         {src:"https://d1zgdcrdir5wgt.cloudfront.net/media/vehicle/images/oZeBOX5wRhugcdt3tta6nQ.730x390.jpg", 
         name:"Mercedes-Benz", price:53, trips:"51" ,rating:"5.0",book_now: true},
         {src:"https://d1zgdcrdir5wgt.cloudfront.net/media/vehicle/images/ifykpaWSTwONE1qqUkjlig.730x390.jpg", 
-        name:"Audi A5 2018", price:100, trips:"51" ,rating:"5.0"},,
+        name:"Audi A5 2018", price:100, trips:"51" ,rating:"5.0"},
         {src:"https://d1zgdcrdir5wgt.cloudfront.net/media/vehicle/images/Rd_FCKsTRrau_ZhPWh1MHg.730x390.jpg", 
         name:"Tesla Model 2019", price:120, trips:"51" ,rating:"5.0", delivery: 'free'},
         {src:"https://d1zgdcrdir5wgt.cloudfront.net/media/vehicle/images/Rd_FCKsTRrau_ZhPWh1MHg.730x390.jpg", 
