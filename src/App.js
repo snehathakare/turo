@@ -1,6 +1,6 @@
 import './App.css';
 import Home from './HomePage';
-import {BrowserRouter, Route} from 'react-router-dom'
+import {BrowserRouter, Route} from 'react-router-dom';
 import Listing from './components/pages/CarList/Listing';
 import ListNewCar from './components/pages/CarList/ListNewCar';
 import UserProfile from './components/pages/Profile/UserProfile';
@@ -20,6 +20,7 @@ function App() {
       </Route>
       <Route path="/profile">
         <UserProfile />
+      </Route>
       <Route path="/mybookings">
         <MyBookings />
       </Route>

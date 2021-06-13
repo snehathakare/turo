@@ -12,6 +12,7 @@
 }
 .footer-bg{
     background-color: rgb(244, 244, 244);
+    bottom: 0 !important;
 }
 .small-para{
     font-size:12px;
