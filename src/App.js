@@ -5,6 +5,7 @@ import Listing from './components/pages/CarList/Listing';
 import ListNewCar from './components/pages/CarList/ListNewCar';
 import UserProfile from './components/pages/Profile/UserProfile';
 import MyBookings from './components/pages/MyBookings/MyBookings';
+import MyListings from './components/pages/MyListings/MyListings';
 
 function App() {
   return (
@@ -21,8 +22,11 @@ function App() {
       <Route path="/profile">
         <UserProfile />
       </Route>
-      <Route path="/mybookings">
+      <Route path="/mybooking">
         <MyBookings />
+      </Route>
+      <Route path="/mylisting">
+        <MyListings />
       </Route>
     </BrowserRouter>
   );
