@@ -3,6 +3,7 @@ import Home from './HomePage';
 import {BrowserRouter, Route} from 'react-router-dom'
 import Listing from './components/pages/CarList/Listing';
 import ListNewCar from './components/pages/CarList/ListNewCar';
+import MyBookings from './components/pages/MyBookings/MyBookings';
 
 function App() {
   return (
@@ -15,6 +16,9 @@ function App() {
       </Route>
       <Route path="/newlist">
         <ListNewCar />
+      </Route>
+      <Route path="/mybookings">
+        <MyBookings />
       </Route>
     </BrowserRouter>
   );
