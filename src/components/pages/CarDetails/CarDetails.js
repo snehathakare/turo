@@ -28,6 +28,7 @@ import Tabs from './Tabs'
 import {useLocation} from 'react-router-dom'
 import axios from 'axios'
 import {API_BASE_URL} from "../../../Constants";
+import Marker from "./Marker";
 
 const handleScroll = () => {
     if (window.scrollY > 20) {
@@ -43,6 +44,12 @@ const handleScroll = () => {
 function CarDetails() {
     let location = useLocation()
     const [itemData,setitemData] = React.useState({})
+    const [mapData,setMapData] = React.useState({
+        center : {lat:0,lng:0},
+        title : '',
+        marker : {lat:0,lng:0}
+
+    })
     let item_id = location.state.item_id
 
     //Fetching data respective to the ID
@@ -60,10 +67,16 @@ function CarDetails() {
         .then(response =>{
             console.log("Response Data for the get listing data by ID")
             console.log(response.data.data.items[0])
+            const data = response.data.data.items[0]
             console.log("fetch details")
 
             //Setting the state of respone data
             setitemData(response.data.data.items[0])
+            setMapData({
+                title: data.maker_name+", "+data.model_name,
+                center: {lat: Number(data.lat),lng: Number(data.lng)},
+                marker: {lat: Number(data.lat),lng: Number(data.lng)},
+            })
         })
         .catch(err=>{
             console.log(err.response)
@@ -101,16 +114,16 @@ function CarDetails() {
                             <h1>{itemData.maker_name+" "+itemData.model_name}</h1>
                             <p className="features-flex">5.0 <StarRateIcon /> (51 trips)</p>
                             <div className="features-flex">
-                                <table>
-                                <tr>
-                                    <td><LocalGasStationIcon /> <p>26 MPG</p></td>
-                                    <td><EvStationIcon /> <p>Gas (Premium)</p></td>
-                                </tr>
-                                <tr>
-                                    <td><AirlineSeatReclineExtraIcon /> <p>2 seats</p></td>
-                                    <td><DriveEtaIcon /> <p>2 doors</p></td>
-                                </tr>
-                                </table>  
+                                {/*<table>*/}
+                                {/*<tr>*/}
+                                {/*    <td><LocalGasStationIcon /> <p>26 MPG</p></td>*/}
+                                {/*    <td><EvStationIcon /> <p>Gas (Premium)</p></td>*/}
+                                {/*</tr>*/}
+                                {/*<tr>*/}
+                                {/*    <td><AirlineSeatReclineExtraIcon /> <p>2 seats</p></td>*/}
+                                {/*    <td><DriveEtaIcon /> <p>2 doors</p></td>*/}
+                                {/*</tr>*/}
+                                {/*</table>  */}
                             </div>
                         </td>
                     </tr>
@@ -120,16 +133,16 @@ function CarDetails() {
                         </td>
                         <td className="details-flex">
                             <div className="features-flex">
-                                <Avatar />
+                                <Avatar src={itemData.profile_img_url} />
                                 <div className="owner-details">
-                                    <h3>Owner</h3>
-                                    <p>Joined Jul 2018 . 4 trips</p>
-                                    <p>Typically responds in 8 minutes</p>
+                                    <h3>{itemData.user}</h3>
+                                    {/*<p>Joined Jul 2018 . 4 trips</p>*/}
+                                    {/*<p>Typically responds in 8 minutes</p>*/}
                                 </div>
                             </div>
                             <div className="details-flex">
-                                <p>Paul has completed training on enhanced cleaning and disinfection practices.</p>
-                                <a href="/">Learn More</a>
+                                {/*<p>Paul has completed training on enhanced cleaning and disinfection practices.</p>*/}
+                                {/*<a href="/">Learn More</a>*/}
                             </div>
                         </td>
                     </tr>
@@ -147,21 +160,21 @@ function CarDetails() {
                         </td>
                         <td>
                         <tr>
-                            <td><AddCircleOutlineIcon />Automatic transmission</td>
-                            <td><PlayCircleOutlineIcon />Apple CarPlay</td>
+                            {/*<td><AddCircleOutlineIcon />Automatic transmission</td>*/}
+                            {/*<td><PlayCircleOutlineIcon />Apple CarPlay</td>*/}
                         </tr>
                             <Features />
                         </td>
                     </tr>
-                    <tr className="overview-left-info">
-                        <td>
-                            <h4>Extras</h4>
-                        </td>
-                        <td>
-                            <p>Add optional Extras to your trip at checkout.</p>
-                            <p><Extras /></p>
-                        </td>
-                    </tr>
+                    {/*<tr className="overview-left-info">*/}
+                    {/*    <td>*/}
+                    {/*        <h4>Extras</h4>*/}
+                    {/*    </td>*/}
+                    {/*    <td>*/}
+                    {/*        <p>Add optional Extras to your trip at checkout.</p>*/}
+                    {/*        <p><Extras /></p>*/}
+                    {/*    </td>*/}
+                    {/*</tr>*/}
                     <tr className="overview-left-info">
                         <td>
                             <h4>Guidelines</h4>
@@ -232,12 +245,15 @@ function CarDetails() {
                         <div className="line-separator"></div>
                     </div>
                     <div className="links-flex">
-                        <a href="/">Report listing</a>
-                        <a href="/">Cancellation policy</a>
+                        {/*<a href="/">Report listing</a>*/}
+                        {/*<a href="/">Cancellation policy</a>*/}
                     </div>
                 </div>
             </div>
-            <div id="location"><Map /></div>
+
+            <div id="location">{ mapData.center.lat!==0?
+                <Map  zoom={11} data={mapData}/>:null
+            }</div>
             <div className="overview-left-info"><Footer /></div>
         </div>
     )

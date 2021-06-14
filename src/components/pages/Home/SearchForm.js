@@ -2,31 +2,41 @@ import React from 'react'
 import SearchIcon from '@material-ui/icons/Search';
 import './search.css'
 import {Link} from 'react-router-dom'
+import GooglePlacesAutocomplete from "react-google-places-autocomplete";
+import Typography from "@material-ui/core/Typography";
 
 function SearchForm() {
- 
     const [query,setQuery] = React.useState({
         where:'',
         from:'',
-        until:''
+         to:''
       })
-  
-      const {where,from,until} = query
+
+      const {from,until,where} = query
       const onChange = (e) =>setQuery({ ...query, [e.target.name]: e.target.value })
-  
+      function setP(e) {
+        console.log(e.label)
+        setQuery({
+            where:e.label
+        })
+      }
     return (
         <div className="search-container">
             <form className="searchform">
                 <div className="input-container">
-                    <div>Where</div>
-                    <div>
-                        <input 
-                        name="where"
-                        value={where}
-                        onChange={e=>onChange(e)}
-                        type="text" 
-                        placeholder="City, Airport, address or hotel"/>
-                    </div>
+                    <GooglePlacesAutocomplete
+                        autocompletionRequest={{
+                            componentRestrictions: {
+                                country: ['us', 'ca'],
+                            }
+                        }}
+                        apiOptions={{ language: 'en', region: 'us' }}
+                        selectProps={{
+                            onChange: setP,
+                            placeholder:"Where"
+                        }}
+                        apiKey="AIzaSyDDqsqjB6WrkHlUZgXBPCsHXXpZrBWfL1E"
+                    />
                 </div>
                 <div className="input-container">
                     <div>From</div>
@@ -49,12 +59,12 @@ function SearchForm() {
                     </div>
                 </div>
                 <Link to={{
-          pathname:"/listing",
+          pathname:"/listings-search",
           state:{
             params : query
           }
           }}>
-                <button 
+                <button
                 className="search-button"><SearchIcon />
                 </button>
                 </Link>

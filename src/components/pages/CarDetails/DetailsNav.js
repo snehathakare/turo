@@ -15,10 +15,10 @@ function DetailsNav() {
                         <a href="#location">LOCATION</a>
                     </div>
             </div>
-            <div className="nav-right-links">
-                <p><strong>$price</strong>/day</p> 
-                <button className="scroll-nav-btn">Check Availability</button>   
-            </div>
+            {/*<div className="nav-right-links">*/}
+            {/*    <p><strong>$price</strong>/day</p> */}
+            {/*    <button className="scroll-nav-btn">Check Availability</button>   */}
+            {/*</div>*/}
         </header>
     )
 }

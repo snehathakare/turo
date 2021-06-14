@@ -1,4 +1,4 @@
-import React from 'react'
+import React, {useEffect} from 'react'
 import ListingNav from './ListingNav'
 import { makeStyles } from '@material-ui/core/styles';
 import Accordion from '@material-ui/core/Accordion';
@@ -22,6 +22,8 @@ import { geocodeByAddress, getLatLng } from 'react-google-places-autocomplete';
 import axios from "axios";
 import {API_BASE_URL} from "../../../Constants";
 import {useHistory} from 'react-router-dom'
+import {toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 function NewList() {
   const [openLogin,setOpenLogin] = React.useState(false)
@@ -90,15 +92,16 @@ export function SimpleAccordion(props) {
                 'Authorization': localStorage.getItem('access'),
             }
         };
-        setModel(e)
+        console.log(e)
         let url = `${API_BASE_URL}/cars/models?make_id=${e.id}`
         let options = []
         axios.get(url,config).then((response)=>{
             if(response.data.code === 200){
                 let arr = response.data.data.items
                 for(let i=0;i<arr.length;i++){
-                    options.push({value:arr[i].title,label:arr[i].title})
+                    options.push({id:arr[i].id,value:arr[i].title,label:arr[i].title})
                 }
+
                 setModels(options)
             }else{
 
@@ -108,9 +111,9 @@ export function SimpleAccordion(props) {
         })
   }
 
-  const [carModel,setcarModel] = React.useState("")
-  const [carMake,setcarMake] = React.useState("")
-  const [carlocation,setcarLocation] = React.useState("")
+  const [carModel,setCarModel] = React.useState("")
+  const [carMake,setCarMake] = React.useState("")
+  const [carLocation,setCarLocation] = React.useState("")
 
   const [mobile_number,setmobile_number] = React.useState('')
   const onChange_mobile_number = e => setmobile_number(e.target.value)
@@ -178,44 +181,106 @@ export function SimpleAccordion(props) {
 
 
 const submitForm = ()=>{
-  
-  var data = new FormData()
-  data.append("carMake",carMake)
-  data.append("carModel",carlocation)
-  data.append("carLocation",carlocation)
-  data.append("mobile_number",mobile_number)
-  data.append("Car_Availability",carAvailablityForm)
-  data.append("Car_Description",carDetailsForm)
-  data.append("photos",photos)
-  data.append("price_Form",priceForm)
 
-  const config = {
-      headers: {
-        Authorization:localStorage.getItem("access")
-      }
-  }
+    const data = new FormData()
+    const  body = {}
+    body["make_id"]=carMake
+    body["model_id"]=carModel
+    body["car_location"]=carLocation
+    body["mobile_number"]=mobile_number
+    body["car_availability"]=carAvailablityForm
+    body["car_description"]=carDetailsForm
+    body["price_form"]=priceForm
+    console.log(body)
+    data.append("data",JSON.stringify(body))
 
 
-  let url = `${API_BASE_URL}/cars/listings`
-  console.log("DATA to be posted:")
+    const config = {
+        headers: {
+            Authorization: localStorage.getItem("access"),
+
+
+        }
+    }
+
+
+    let url = `${API_BASE_URL}/cars/listings`
+    let imageUrlSingle = `${API_BASE_URL}/cars/listings/images/upload-single`
+    let imageUrlMultiple = `${API_BASE_URL}/cars/listings/images/upload-multiple`
+
+
+    console.log("DATA to be posted:")
   console.log({
     carAvailablityForm,carDetailsForm,priceForm,mobile_number,photos
   })
+    console.log(body)
+    axios.post(url,{data:body},config)
+        .then((res)=>{
+            const fileArr = Array.from(photos)
+            console.log(fileArr)
+            const code = res.data.code;
+            const msg = res.data.status;
+            if (code===200){
+                toast.success(msg)
+            }else {
+                toast.error(msg)
+            }
+            if (fileArr){
+                const data = new FormData()
+                data.append("id",res.data.id)
+                config.headers["Content-Type"]="multipart/form-data"
+                if (fileArr.length===1){
+                    console.log(fileArr.length===1)
+                    data.append("file", photos[0])
+                    axios.post(imageUrlSingle,data,config)
+                        .then((resultData)=>{
+                            const code = resultData.data.code;
+                            const msg = resultData.data.status;
+                            if (code===200){
+                                toast.success(msg)
+                            }else {
+                                toast.error(msg)
+                            }
+                        })
+                }else {
+                    if(fileArr.length>1){
+                        for (let i=0;i<fileArr.length;i++){
+                            data.append("files", photos[i])
+                        }
+                        axios.post(imageUrlMultiple,data,config)
+                            .then((res)=>{
+                                const code = res.data.code;
+                                const msg = res.data.status;
+                                if (code===200){
+                                    toast.success(msg)
+                                }else {
+                                    toast.error(msg)
+                                }
+                            })
+                    }
+                }
+            }
+            console.log(res.data.data.id)
+        })
+        .catch(err => {
+            console.log(err.response)
+        })
+  // axios.post(url,{data:data},config)
+  //     .then((res)=>{
+  //       console.log(res)
+  //      // history.push("/")
+  //     })
+  //     .catch(err => {
+  //       console.log(err.response)
+  //
+  // })
   
- 
-  axios.post(url,data,config)
-      .then((res)=>{
-        console.log(res)
-        history.push("/")
-      })
-      .catch(err => {
-        console.log(err.response)
-        
-  })
-  
-  window.location.reload(false)
+  //window.location.reload(false)
 
 }
+    useEffect(()=>{
+        getMakes({})
+    },[])
 
 const [expanded,setExpanded] = React.useState({
   car:true,
@@ -242,17 +307,17 @@ let setCarAvailabilityExpand = (previousTab,currentTab)=>{
     setExpanded({payout:lastTab}) //false,true
   }
 
+
   return (
     <div className="root" >
 
-        
         {localStorage.getItem("access") ? 
         <>
         <h1>List your car</h1>
       <Accordion
       onChange={() => setExpanded({car:!expanded.car})}
        expanded={expanded.car}>
-        <AccordionSummary onClick={getMakes}
+        <AccordionSummary
           expandIcon={<ExpandMoreIcon />}
           aria-controls="panel1a-content"
           id="panel1a-header"
@@ -261,16 +326,25 @@ let setCarAvailabilityExpand = (previousTab,currentTab)=>{
         </AccordionSummary>
         <AccordionDetails style={{display:"block",textAlign:"left"}}>
             <p>Make</p>
-           {/* <Select options={makes} onChange={getModels}/>*/}
-           <Select onChange={(e)=>setcarMake(e.target.value)}/>
+            <Select options={makes} onChange={(e)=>getModels(e)}/>
             <p>Model</p>
-           {/* <Select options={models}  />*/}
-           <Select value={carlocation} onChange={(e)=>setcarLocation(e.target.value)}/>
+            {/*<Select options={models}  />*/}
+           <Select options={models} onChange={(e)=>setCarModel(e)}/>
             <Typography>
               <h5>Where is your car located?</h5>
                 <GooglePlacesAutocomplete
-                value={carlocation}
-                onChange={(e)=>setcarLocation(e.target.value)}
+
+                    autocompletionRequest={{
+                        componentRestrictions: {
+                            country: ['us', 'ca'],
+                        }
+                    }}
+                    apiOptions={{ language: 'en', region: 'us' }}
+                    selectProps={{
+                        placeholder:"Type a location...",
+                        value:carLocation,
+                        onChange:setCarLocation
+                    }}
                     apiKey="AIzaSyDDqsqjB6WrkHlUZgXBPCsHXXpZrBWfL1E"
                 />
         
@@ -480,12 +554,12 @@ let setCarAvailabilityExpand = (previousTab,currentTab)=>{
         onClick = {() => 
           submitForm()
       }
-        style={{marginLeft:"70px",marginTop:"20px"}}>Continue</button>
+        style={{width:"100%"}}>Continue</button>
 
         <Footer />
     
 
-        </> : <h1>Please Login to add a list</h1>}
+        </> : <h1>Please Login to host your car</h1>}
 
       </div>
   );

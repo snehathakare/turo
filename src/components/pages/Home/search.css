@@ -12,7 +12,7 @@
     margin-right: auto;
     width: 940px;
     position: relative;
-    top: 20px;
+    top: 160px;
     background-color: #FFFFFF;
     border-radius: 100px;
     height: 56px;
@@ -32,7 +32,6 @@
     border: 0;
     color: #FFFFFF;
     cursor: pointer;
-    width:12%;
     display: flex;
     justify-content: center;
     align-items: center;

@@ -1,12 +1,15 @@
 import React from 'react'
 import PersonOutlineIcon from '@material-ui/icons/PersonOutline';
 import './listing.css'
-import FormDialogLogin from "../Home/FormDialogLogin"
-import FormDialogSignup from "../Home/FormDialogSignup"
-import FormDialogForgotPass from "../Home/FormDialogForgotPass";
+import FormDialogLogin from "../Auth/FormDialogLogin"
+import FormDialogSignup from "../Auth/FormDialogSignup"
+import FormDialogForgotPass from "../Auth/FormDialogForgotPass";
 import axios from "axios"
 import Avatar from '@material-ui/core/Avatar';
 import {API_BASE_URL} from "../../../Constants";
+import GooglePlacesAutocomplete from "react-google-places-autocomplete";
+import SearchIcon from "@material-ui/icons/Search";
+import {Link, useHistory} from "react-router-dom";
 
 
 export default function ListingNav(props) {
@@ -25,17 +28,18 @@ export default function ListingNav(props) {
     const [query,setQuery] = React.useState({
       where:'',
       from:'',
-      until:''
+      to:''
     })
 
     const {where,from,until} = query
     const onChange = (e) =>setQuery({ ...query, [e.target.name]: e.target.value })
+    const {first_name,last_name} = profileData
 
     const handleSearch = ()=> {
-
       props.uriParamsHandler(query)
 
-/**       let url = `http://185.241.5.135:3000/api/cars/listing?query=${query}`
+        let url = `${API_BASE_URL}/cars/listings?from=&to=&where=${query.where}&page=0&size=50`
+
 
         const config = {
             headers:{
@@ -48,17 +52,22 @@ export default function ListingNav(props) {
             console.log("Response Data from Search")
             console.log(response.data)
             props.searchDataHandler(response.data.data.items)
-            
+
         })
         .catch(err=>{
             console.log(err.response)
         })
-        **/
+
     }
     
     
-    const {first_name,last_name,user_profile_img} = profileData
-
+    const {user_profile_img} = profileData
+    function setP(e) {
+        console.log(e.label)
+        setQuery({
+            where:e.label
+        })
+    }
   const fetch_UserDetails = async ()=>{
     const config = {
       headers: {
@@ -70,11 +79,11 @@ export default function ListingNav(props) {
 
   let url = `${API_BASE_URL}/user/details?token=${localStorage.getItem('access')}`
   console.log(url)
-  axios.get(url,config).then((response)=>{
+   axios.get(url,config).then((response)=>{
     setProfileData({
-      first_name:response.data.data.first_name,
-      last_name: response.data.data.last_name,
-      user_profile_img:response.data.data.profile_img_url
+      user_profile_img:response.data.data.profile_img_url,
+       last_name: response.data.data.last_name,
+      first_name: response.data.data.first_name,
     })
     
     console.log(user_profile_img)
@@ -160,14 +169,19 @@ React.useEffect(()=>{
                 <div className="logo"><a href="/">TURO</a></div>
                 <div className="listing-search">
                     <div>Where</div>
-                    <div className="listing-nav-input">
-                        <input 
-                        name="where"
-                        value={where}
-                        onChange={e=>onChange(e)}
-                        type="text" 
-                        placeholder="City, Airport, address or hotel"/>
-                    </div>
+                    <GooglePlacesAutocomplete
+                        autocompletionRequest={{
+                            componentRestrictions: {
+                                country: ['us', 'ca'],
+                            }
+                        }}
+                        apiOptions={{ language: 'en', region: 'us' }}
+                        selectProps={{
+                            onChange:setP,
+                            placeholder:"Where"
+                        }}
+                        apiKey="AIzaSyDDqsqjB6WrkHlUZgXBPCsHXXpZrBWfL1E"
+                    />
                     <div>From</div>
                     <div className="listing-nav-input">
                         <input 
@@ -187,37 +201,50 @@ React.useEffect(()=>{
                         placeholder="date" />
                     </div>
                     <div className="search-btn">
-                        <button onClick={handleSearch}>
-                              Search
+                        <button onClick={handleSearch}
+                            className="search-button"><SearchIcon />
                         </button>
                     </div>
                     {localStorage.getItem("access") == null ? 
-                    <>
+                    <div className="nav-right-links">
+                        <a href="/new-list">List your car</a>
                     <FormDialogLogin 
                     handleOpenLogin={props.handleOpenLogin}
                     setLoggedIn={setLoggedIn} loginDialog={loginState} changeLoginDialog={changeLoginState} registerDialog={registerState} changeForgotDialog={changeForgotState} changeRegisterDialog={changeRegisterState} />
                     <FormDialogSignup changeLoginDialog={changeLoginState} registerDialog={registerState} changeRegisterDialog={changeRegisterState} />
                     <FormDialogForgotPass  forgotPassDialog={forgotPassState} changeLoginDialog={changeLoginState} changeForgotDialog={changeForgotState}/>
-                    </>
-                    : 
-                    <div className="loggedin-items">
-                    <div className="nav-username">
-                      <p>Hi, {first_name} {last_name}</p>
                     </div>
-                    <Avatar src={user_profile_img}>
-                    {first_name.slice(0,1).toUpperCase()}{last_name.slice(0,1).toUpperCase()}
-                  </Avatar>
-                  
-                  <button onClick={LogoutHandler}>
-                    Log Out
-                  </button>
-                  </div>
+                    :
+                        <div className="loggedin-items">
+                            <div className="nav-right-links">
+                                <a href="/new-list">List your car</a>
+                                <div className="nav-dropdown">
+                                    <a href="/">Hi, {first_name} {last_name}</a>
+                                    <div className="dropdown-content">
+                                        <ul>
+                                            <li>My Trips</li>
+                                            <li>My listings</li>
+                                            <li>My account</li>
+                                            <li onClick={LogoutHandler}>Log out</li>
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
+
+                            {/*<Avatar src={user_profile_img}>*/}
+                            {/*    {first_name.slice(0,1).toUpperCase()}{last_name.slice(0,1).toUpperCase()}*/}
+                            {/*</Avatar>*/}
+
+                        </div>
 }
                     
                 </div>
             </div>
             <div className="nav-right-links">
-                <PersonOutlineIcon/>
+                {user_profile_img?
+                    <Avatar src={user_profile_img}>
+                </Avatar>:<PersonOutlineIcon/>
+                }
             </div>
         </header>
     )

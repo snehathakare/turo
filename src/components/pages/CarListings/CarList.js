@@ -8,7 +8,7 @@ import CardMedia from '@material-ui/core/CardMedia';
 import Typography from '@material-ui/core/Typography';
 import StarRateIcon from '@material-ui/icons/StarRate';
 import Slider from '@material-ui/core/Slider';
-import './listing.css';
+import '../NewList/listing.css';
 import axios from "axios"
 import {Link,useLocation, useHistory} from 'react-router-dom'
 import ReactPaginate from 'react-paginate'
@@ -18,17 +18,18 @@ const carInfo = []
 
 const useStyles = makeStyles({
   root: {
-    width: 300,
+    width: "100%",
     margin: 10,
   },
   media: {
-    height: 140,
+    height: 500,
   },
 });
 
 export default function CarList(props) {
   const classes = useStyles();
   let location = useLocation()
+  console.log(location.state)
   let query = location.state?location.state.params:""
   const [cars, setCars] = useState(carInfo);
   const [carsInfo,setCarsInfo] = useState(null)
@@ -47,7 +48,10 @@ export default function CarList(props) {
   };
   
   useEffect(() => {
-    
+    history.push({
+      pathname: '/listings-search',
+      search: '?where='+query.where+"&from="+query.from+"&to="+query.to
+    })
       getCarsList() 
 },[]);
 
@@ -123,17 +127,21 @@ const history = useHistory();
     <>
       <header className="nav">
       <div className="listing-filter-stack">
-          <button className="listing-filters">Sort by</button>
-          <div className="price-btn"><button className="listing-filters" onClick={() => filterPrice(140)}>Price</button></div>
+          <button className="listing-filters">Best match</button>
+          <div className="price-btn">
+            <button className="listing-filters" onClick={() => filterPrice(140)}>Price</button>
+          </div>
           <div className="slider-dropdown"><DiscreteSlider /></div>
-          <button className="listing-filters" onClick={() => filterBooking(true)}>Book Instantly</button>
-          <button className="listing-filters" onClick={() => filterDelivery('free')}>Delivery</button>
-          <button className="listing-filters">Distance included</button>
-          <button className="listing-filters">More filters</button>
+          <button className="listing-filters" onClick={() => filterBooking(true)}>Distance</button>
+          <button className="listing-filters" onClick={() => filterBooking(true)}>Latest model</button>
+          {/*<button className="listing-filters" onClick={() => filterBooking(true)}>Book Instantly</button>*/}
+          {/*<button className="listing-filters" onClick={() => filterDelivery('free')}>Delivery</button>*/}
+          {/*<button className="listing-filters">Distance included</button>*/}
+          {/*<button className="listing-filters">More filters</button>*/}
       </div>
   </header>
 
-  <div className="car-list">
+  <div className="car-list" style={{display:"block"}}>
       {/* {cars.map(car=>(
           <Card className={classes.root}>
             <CardActionArea>
@@ -157,37 +165,40 @@ const history = useHistory();
       ))} */}
       {carsInfo && carsInfo.length == 0 ?
       <h1>No Data to Display</h1>
-      :
-      carsInfo && carsInfo.slice(pagesVisited,pagesVisited+cardsPerPage).map(car=>(
+      :  <div>
+            {carsInfo && carsInfo.slice(pagesVisited,pagesVisited+cardsPerPage).map(car=>(
+                <Link style={{textDecoration:'none'}} to={{
+                  pathname:"/listing-details",
+                  state:{
+                    item_id : car.listing_id
+                  }
+                }}>
+                  <Card className={classes.root}>
+                    <CardActionArea>
+                      <CardMedia
+                          className={classes.media}
+                          image={car.thumbnail ? car.thumbnail :"https://i.stack.imgur.com/y9DpT.jpg"}
+                      />
+                      <CardContent>
+                        <Typography gutterBottom variant="h5" component="h2" underline >
+                          {car.maker_name ? car.maker_name+", "+car.model_name : 'No Name'}
+                        </Typography>
+                        <Typography className="car-rating" variant="body2" color="textSecondary" component="p" style={{ textDecoration: 'none'}}>
+                          {car.feedback_score ? car.feedback_score : 'No rating'}<StarRateIcon /> ({car.trips ? car.trips : 'No trips'} trips)
+                        </Typography>
+                        <Typography variant="car-rating" component="h2" >
+                          {car.distance?car.distance:""}
+                        </Typography>
+                      </CardContent>
+                      <CardActions>
+                        <h4 >${car.price ? car.price : 'No Price'}/day</h4>
+                      </CardActions>
+                    </CardActionArea>
+                  </Card>
+                </Link>
+            ))
+            }</div>}
 
-        <Link to={{
-          pathname:"/car-details",
-          state:{
-            item_id : car.listing_id
-          }
-          }}>
-        <Card className={classes.root}>
-          <CardActionArea>
-              <CardMedia
-              className={classes.media}
-              image={car.thumbnail ? car.thumbnail : 'No Image'}
-              />
-              <CardContent>
-              <Typography gutterBottom variant="h5" component="h2">
-                  {car.model_name ? car.maker_name+", "+car.model_name : 'No Name'}
-              </Typography>
-              <Typography className="car-rating" variant="body2" color="textSecondary" component="p">
-              {car.feedback_score ? car.feedback_score : 'No rating'}<StarRateIcon /> ({car.trips ? car.trips : 'No trips'} trips)
-              </Typography>
-              </CardContent>
-              <CardActions>
-              <h4>${car.price ? car.price : 'No Price'}/day</h4>
-              </CardActions>
-          </CardActionArea>
-        </Card>
-        </Link>
-    ))
-      }
 
   </div>
 

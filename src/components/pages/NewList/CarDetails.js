@@ -26,23 +26,17 @@ function CarDetails(props) {
 
   const [featuresData, setFeaturesData] = React.useState({
     allwheel: false,
-    allwheel2: false,
     androidAuto:false,
-    androidAuto2:false,
     usbCharger:false,
-    usbCharger2:false,
     sunroof:false,
-    sunroof2:false,
     petFriendly:false,
-    petFriendly2:false,
     bluetooth:false,
-    bluetooth2:false
     
 })
 
-const { allwheel,allwheel2,androidAuto,androidAuto2, 
-  usbCharger,usbCharger2,sunroof,sunroof2,petFriendly,petFriendly2,
-bluetooth,bluetooth2} = featuresData
+const { allwheel,androidAuto,
+  usbCharger,sunroof,petFriendly,
+bluetooth} = featuresData
 
 const onChange = e => setFeaturesData({ ...featuresData, [e.target.name]: e.target.checked })
 
@@ -99,50 +93,7 @@ const submitHandler = e => {
                   label="Bluetooth"
                 />
               </FormGroup>
-              <FormGroup>
-                <FormControlLabel
-                name="allwheel2"
-                value={allwheel2}
-                onChange={e => onChange(e)}
-                  control={<Checkbox />}
-                  label="All Wheel drive"
-                />
-                <FormControlLabel
-                name="androidAuto2"
-                value={androidAuto2}
-                onChange={e => onChange(e)}
-                  control={<Checkbox />}
-                  label="Android Auto"
-                />
-                <FormControlLabel
-                name="usbCharger2"
-                value={usbCharger2}
-                onChange={e => onChange(e)}
-                  control={<Checkbox />}
-                  label="USB Charger"
-                />
-                <FormControlLabel
-                name="sunroof2"
-                value={sunroof2}
-                onChange={e => onChange(e)}
-                  control={<Checkbox />}
-                  label="Sunroof"
-                />
-                <FormControlLabel
-                name="petFriendly2"
-                value={petFriendly2}
-                onChange={e => onChange(e)}
-                  control={<Checkbox />}
-                  label="Pet Friendly"
-                />
-                <FormControlLabel
-                name="bluetooth2"
-                value={bluetooth2}
-                onChange={e => onChange(e)}
-                  control={<Checkbox />}
-                  label="Bluetooth"
-                />
-              </FormGroup>
+
           </div>
           <div className="car-description">
            <div>

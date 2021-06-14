@@ -15,7 +15,7 @@ import Footer from './components/pages/Home/Footer';
 function Home() {
   return (
     <div className="App">
-      <Announcement />
+
       <Nav/>
       <Banner />
       <div className="app-content">

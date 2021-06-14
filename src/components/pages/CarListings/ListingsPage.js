@@ -1,19 +1,25 @@
 import React from 'react'
-import ListingNav from './ListingNav.js'
+import ListingNav from '../NewList/ListingNav.js'
 import CarList from './CarList.js'
 
-function Listing() {
+
+
+function ListingPage() {
     const [openLogin,setOpenLogin] = React.useState(false)
     const [searchData,setsearchData] = React.useState({})
     const [uriParams,seturiParams] = React.useState('')
-    
+
+
     const searchDataHandler = (object) => {
+        console.log(object)
         setsearchData(object)
         
     }
 
     const uriParamsHandler = (params) =>{
+        console.log(params)
         seturiParams(params)
+
     }
 
     
@@ -26,15 +32,15 @@ function Listing() {
 
     return (
         <div>
-            <ListingNav 
+            <ListingNav
             searchDataHandler={searchDataHandler}
             openLogin={openLogin} 
             uriParamsHandler={uriParamsHandler}
             handleOpenLogin={handleOpenLogin} />
             <div>
-                <CarList 
-                searchData={searchData}
-                uriParams={uriParams}
+                <CarList
+                 searchData={searchData}
+                 uriParams={uriParams}
                 />
               
             </div>
@@ -42,4 +48,4 @@ function Listing() {
     )
 }
 
-export default Listing
+export default ListingPage

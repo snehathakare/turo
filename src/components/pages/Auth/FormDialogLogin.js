@@ -146,7 +146,7 @@ export default function FormDialogLogin(props) {
                             <span>Password</span>
                             <input type="password" placeholder="Password" name="password" onChange={handlePassword} required />
                             <p style={{textAlign:"right"}}>Forgot your password?&nbsp;
-                                <a style={{cursor:'pointer'}} onClick={navigateToForgotPass} >Click here</a>
+                                <a style={{cursor:'pointer',textDecoration:"underline"}} onClick={navigateToForgotPass} >Click here</a>
                             </p>
 
 
@@ -174,7 +174,7 @@ export default function FormDialogLogin(props) {
                                     seterrMsg("Please provide a valid email!")
                                 }
 
-                            }} className="btn-long">
+                            }} className="btn-long" style={{width:"70%"}}>
                                 Login
                             </button>
 

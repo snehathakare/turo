@@ -6,7 +6,7 @@ import BluetoothIcon from '@material-ui/icons/BluetoothOutlined';
 import './features.css'
 
 function Features() {
-    const [readMore,setReadMore]=useState(false);
+    const [readMore,setReadMore]=useState(true);
     const extraContent=<div>
         <table className="extra-content features-col features-row">
            <tr>

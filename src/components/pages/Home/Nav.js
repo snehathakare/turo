@@ -3,12 +3,12 @@ import PersonOutlineIcon from '@material-ui/icons/PersonOutline';
 import './nav.css'
 import Dialog from '@material-ui/core/Dialog';
 import DialogActions from '@material-ui/core/DialogActions';
-import FormDialogLogin from "./FormDialogLogin";
-import FormDialogSignup from "./FormDialogSignup";
+import FormDialogLogin from "../Auth/FormDialogLogin";
+import FormDialogSignup from "../Auth/FormDialogSignup";
 import axios from "axios"
 import CloseIcon from '@material-ui/icons/Close';
 import Avatar from '@material-ui/core/Avatar';
-import FormDialogForgotPass from "./FormDialogForgotPass";
+import FormDialogForgotPass from "../Auth/FormDialogForgotPass";
 import ClipLoader from "react-spinners/ClipLoader";
 import {API_BASE_URL} from "../../../Constants";
 
@@ -119,25 +119,34 @@ return (
  
    { isLoggedIn && profileData?
    <div className="loggedin-items">
-     <div className="nav-username">
-      <p>Hi, {first_name} {last_name}</p>
-    </div>
+     <div className="nav-right-links">
+       <a href="/new-list">List your car</a>
+     <div className="nav-dropdown">
+       <a href="/">Hi, {first_name} {last_name}</a>
+       <div className="dropdown-content">
+         <ul>
+           <li>My Trips</li>
+           <li>My listings</li>
+           <li>My account</li>
+           <li onClick={LogoutHandler}>Log out</li>
+         </ul>
+       </div>
+     </div>
+     </div>
+
      <Avatar src={user_profile_img}>
      {first_name.slice(0,1).toUpperCase()}{last_name.slice(0,1).toUpperCase()}
   </Avatar>
-  
-  <button onClick={LogoutHandler}>
-    Log Out
-  </button>
+
    </div>
    :
    <div className="nav-right-links">
-        <a href="/">Become a host</a>
+        <a href="/new-list">List your car</a>
         <div className="nav-dropdown">
         <a href="/">Learn More</a>
         <div className="dropdown-content">
         <ul>
-        <li>How Turo works</li>
+        <li>How it works</li>
         <li>Insurance & Protection</li>
         <li>Carculator</li>
         <li>Host Tools</li>

@@ -1,5 +1,7 @@
 import React, { Component } from 'react';
 import GoogleMapReact from 'google-map-react';
+import Marker from "./Marker";
+import {blue} from "@material-ui/core/colors";
  
 const AnyReactComponent = ({ text }) => <div>{text}</div>;
  
@@ -11,20 +13,25 @@ export default class Map extends Component {
     },
     zoom: 11
   };
- 
+
+
+
   render() {
+    console.log(this.props.data.title)
     return (
       // Important! Always set the container height explicitly
       <div style={{ height: '100vh', width: '100%' }}>
         <GoogleMapReact
-          bootstrapURLKeys={{ key: "" }}
-          defaultCenter={this.props.center}
+          bootstrapURLKeys={{ key: "AIzaSyDDqsqjB6WrkHlUZgXBPCsHXXpZrBWfL1E" }}
+          defaultCenter={this.props.data.center}
           defaultZoom={this.props.zoom}
         >
-          <AnyReactComponent
-            lat={59.955413}
-            lng={30.337844}
-            text="My Marker"
+          <Marker
+              color="blue"
+            lat={this.props.data.center.lat}
+            lng={this.props.data.center.lng}
+            name={this.props.data.title}
+              text="afsdfa"
           />
         </GoogleMapReact>
       </div>
