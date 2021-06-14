@@ -120,14 +120,14 @@ return (
    { isLoggedIn && profileData?
    <div className="loggedin-items">
      <div className="nav-right-links">
-       <a href="/new-list">List your car</a>
+       <a className="custom_a" href="/new-list">List your car</a>
      <div className="nav-dropdown">
-       <a href="/">Hi, {first_name} {last_name}</a>
+       <a href="/" className="custom_a">Hi, {first_name} {last_name}</a>
        <div className="dropdown-content">
          <ul>
-           <li>My Trips</li>
-           <li>My listings</li>
-           <li>My account</li>
+           <a href="/my-bookings" className="a_no_dec"> <li>My Trips</li></a>
+           <a href="/my-lisitings" className="a_no_dec"> <li>My Listings</li></a>
+           <a href="/my-account" className="a_no_dec"> <li>My Account</li></a>
            <li onClick={LogoutHandler}>Log out</li>
          </ul>
        </div>
@@ -141,9 +141,9 @@ return (
    </div>
    :
    <div className="nav-right-links">
-        <a href="/new-list">List your car</a>
+        <a className="custom_a" href="/new-list">List your car</a>
         <div className="nav-dropdown">
-        <a href="/">Learn More</a>
+        <a className="custom_a" href="/">Learn More</a>
         <div className="dropdown-content">
         <ul>
         <li>How it works</li>

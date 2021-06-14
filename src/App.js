@@ -12,10 +12,13 @@ import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import { Slide} from 'react-toastify';
 import ListingPage from "./components/pages/CarListings/ListingsPage";
+import MyBookings from "./components/pages/MyBookings/MyBookings";
+import MyListings from "./components/pages/MyListings/MyListings";
+import UserProfile from "./components/pages/MyProfile/UserProfile";
 
 function App() {
 
-  
+
   return (
     <BrowserRouter>
         <ToastContainer
@@ -37,20 +40,37 @@ function App() {
         <Home />
       </Route>
         <Route exact path="/account" component={AccountActionPage} />
-        
-        <Route path="/signup">
-        <FormDialogSignup  />
+
+        <Route path="/my-account">
+        <UserProfile  />
       </Route>
+
+        <Route path="/my-listings">
+            <MyListings  />
+        </Route>
+
+        <Route path="/my-bookings">
+            <MyBookings  />
+        </Route>
         
-      <Route path="/listings-search">
-        <ListingPage />
+      <Route path="/listings-search:from:to:where">
+           <ListingPage />
       </Route>
+        <Route path="/listings-search">
+            <ListingPage />
+        </Route>
+
+
       <Route path="/new-list">
         <NewList />
       </Route>
-      <Route path="/listing-details">
+      <Route path="/listing-details:from:to">
         <CarDetails />
       </Route>
+
+        <Route path="/listing-details">
+            <CarDetails />
+        </Route>
     </BrowserRouter>
 
   );

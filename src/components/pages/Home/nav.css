@@ -76,8 +76,13 @@
   color: white;
   margin-top: 5px;
 }
+.a_no_dec{
+  text-decoration: none;
+  color: black;
+  background-color: transparent;
 
-.nav-right-links a {
+}
+.custom_a {
   text-decoration: none;
   margin: 0 12px;
   white-space: nowrap;

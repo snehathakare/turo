@@ -25,7 +25,7 @@ import Extras from './Extras.js'
 import PlayCircleOutlineIcon from '@material-ui/icons/PlayCircleOutline';
 import AddCircleOutlineIcon from '@material-ui/icons/AddCircleOutline';
 import Tabs from './Tabs'
-import {useLocation} from 'react-router-dom'
+import {useHistory, useLocation} from 'react-router-dom'
 import axios from 'axios'
 import {API_BASE_URL} from "../../../Constants";
 import Marker from "./Marker";
@@ -42,6 +42,7 @@ const handleScroll = () => {
   };
 
 function CarDetails() {
+    const history = useHistory();
     let location = useLocation()
     const [itemData,setitemData] = React.useState({})
     const [mapData,setMapData] = React.useState({
@@ -50,12 +51,13 @@ function CarDetails() {
         marker : {lat:0,lng:0}
 
     })
+    console.log(location.state)
     let item_id = location.state.item_id
-
+    let query = location.state?location.state.params:""
     //Fetching data respective to the ID
     const fetchListing = () => {
         console.log("fetch details")
-        let url = `${API_BASE_URL}/cars/listing?id=${item_id}`
+        let url = `${API_BASE_URL}/cars/listing?id=${item_id}&from=${query.from}&to=${query.to}`
 
         const config = {
             headers:{
@@ -71,6 +73,9 @@ function CarDetails() {
             console.log("fetch details")
 
             //Setting the state of respone data
+            console.log(response.data.data.items[0])
+            response.data.data.items[0].from=query.from
+            response.data.data.items[0].to=query.to
             setitemData(response.data.data.items[0])
             setMapData({
                 title: data.maker_name+", "+data.model_name,
@@ -86,6 +91,7 @@ function CarDetails() {
     //To make sure data is fetched everytime user refreshes the page
     useEffect(()=>{
         fetchListing()
+
     },[])
     
 
@@ -220,16 +226,16 @@ function CarDetails() {
                 <div className="overview-right">
                     <div>
                         <h2>{itemData.price? `${itemData.price}$ day`:"Not Available"}</h2>
-                        <p>$116 total + fees</p>
-                        <div className="line-separator"></div>
+                        <p>{itemData.total_price? `${itemData.total_price}$ total`:"Not Available"}</p>
+                        {/*<div className="line-separator"></div>*/}
                     </div>
                     <div>
-                        <CarDetailForm />
-                        <div className="line-separator"></div>
+                        <CarDetailForm days={itemData.trip_days?itemData.trip_days:0} data={itemData} />
+                        {/*<div className="line-separator"></div>*/}
                     </div>
                     <div>
                         <Tabs />
-                        <div className="line-separator"></div>
+                        {/*<div className="line-separator"></div>*/}
                     </div>
                     <div className="links-flex">
                         <button className="padding-top-bottom nav-btn-outlined features-flex btn-long center">

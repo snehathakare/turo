@@ -1,0 +1,28 @@
+.listing-container{
+    width: 940px;
+    margin-right: auto;
+    margin-left: auto;
+    display: flex;
+    padding: 10px;
+    align-items: center;
+}
+.listing-right{
+    margin-left: 20px;
+    width:30%;
+}
+.listing-left{
+    margin-right: 20px;
+    padding-left:40px;
+    width:50%;
+}
+.listing-left img{
+    width:70%;
+}
+.listing-card{
+    display: flex;
+    justify-content: center;
+    width:50%;
+    margin-right:auto;
+    margin-left:auto;
+    margin-top:30px;
+}

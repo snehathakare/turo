@@ -12,7 +12,7 @@ function SearchForm() {
          to:''
       })
 
-      const {from,until,where} = query
+      const {from,to,where} = query
       const onChange = (e) =>setQuery({ ...query, [e.target.name]: e.target.value })
       function setP(e) {
         console.log(e.label)
@@ -52,14 +52,14 @@ function SearchForm() {
                     <div>Until</div>
                     <div>
                         <input 
-                        name="until"
-                        value={until}
+                        name="to"
+                        value={to}
                         onChange={e=>onChange(e)}
                         type="datetime-local" />
                     </div>
                 </div>
                 <Link to={{
-          pathname:"/listings-search",
+          pathname:"/listings-search?where="+query.where+"&from="+query.from+"&to="+query.to,
           state:{
             params : query
           }

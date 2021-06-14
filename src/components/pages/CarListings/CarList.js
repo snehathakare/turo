@@ -48,10 +48,7 @@ export default function CarList(props) {
   };
   
   useEffect(() => {
-    history.push({
-      pathname: '/listings-search',
-      search: '?where='+query.where+"&from="+query.from+"&to="+query.to
-    })
+
       getCarsList() 
 },[]);
 
@@ -72,9 +69,9 @@ const history = useHistory();
       history.replace({ ...history.location, state });
   }
     
-  }
+ }
   
-  let url = `${API_BASE_URL}/cars/listings?from=&to=&where=${query.where}&page=0&size=50`
+  let url = `${API_BASE_URL}/cars/listings?from=${query.from}&to=${query.to}&where=${query.where}&page=0&size=50`
   
     axios.get(url,config).then((response)=>{
       console.log('listing',response.data.data.items)
@@ -168,10 +165,13 @@ const history = useHistory();
       :  <div>
             {carsInfo && carsInfo.slice(pagesVisited,pagesVisited+cardsPerPage).map(car=>(
                 <Link style={{textDecoration:'none'}} to={{
-                  pathname:"/listing-details",
+                  pathname:"/listing-details?from="+query.from+"&to="+query.to,
                   state:{
-                    item_id : car.listing_id
-                  }
+                    total_price:car.total_price,
+                    item_id : car.listing_id,
+                    params: query
+                  },
+
                 }}>
                   <Card className={classes.root}>
                     <CardActionArea>

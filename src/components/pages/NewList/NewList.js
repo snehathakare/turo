@@ -367,7 +367,7 @@ let setCarAvailabilityExpand = (previousTab,currentTab)=>{
       {/*    aria-controls="panel2a-content"*/}
       {/*    id="panel2a-header"*/}
       {/*  >*/}
-      {/*    <Typography className={classes.heading}><h4>Profile photo</h4></Typography>*/}
+      {/*    <Typography className={classes.heading}><h4>MyProfile photo</h4></Typography>*/}
       {/*  </AccordionSummary>*/}
       {/*  <AccordionDetails>*/}
       {/*    <Typography className="flex">*/}
