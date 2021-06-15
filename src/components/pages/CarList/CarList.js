@@ -11,17 +11,17 @@ import Slider from '@material-ui/core/Slider';
 import './listing.css';
 
 const carInfo = [{src:"https://d1zgdcrdir5wgt.cloudfront.net/media/vehicle/images/Rd_FCKsTRrau_ZhPWh1MHg.730x390.jpg", 
-        name:"Tesla Model S 2018", price:140, trips:"51" ,rating:"5.0", book_now: true, delivery: 'free'},
+        name:"Tesla Model S 2017", price:140, trips:"51" ,rating:"5.0", book_now: true, delivery: 'free'},
         {src:"https://d1zgdcrdir5wgt.cloudfront.net/media/vehicle/images/JFxpbWXsSPeTyVGajafUuw.730x390.jpg", 
-        name:"Tesla Model 3 2019", price:170, trips:"51" ,rating:"5.0", delivery: 'free'},
+        name:"Tesla Model 4 2019", price:170, trips:"51" ,rating:"5.0", delivery: 'free'},
         {src:"https://d1zgdcrdir5wgt.cloudfront.net/media/vehicle/images/oZeBOX5wRhugcdt3tta6nQ.730x390.jpg", 
-        name:"Mercedes-Benz", price:53, trips:"51" ,rating:"5.0",book_now: true},
+        name:"Mercedes-Benz C4", price:53, trips:"51" ,rating:"5.0",book_now: true},
         {src:"https://d1zgdcrdir5wgt.cloudfront.net/media/vehicle/images/ifykpaWSTwONE1qqUkjlig.730x390.jpg", 
-        name:"Audi A5 2018", price:100, trips:"51" ,rating:"5.0"},
+        name:"Audi A4 2017", price:100, trips:"51" ,rating:"5.0"},
         {src:"https://d1zgdcrdir5wgt.cloudfront.net/media/vehicle/images/Rd_FCKsTRrau_ZhPWh1MHg.730x390.jpg", 
-        name:"Tesla Model 2019", price:120, trips:"51" ,rating:"5.0", delivery: 'free'},
+        name:"Tesla Model 2020", price:120, trips:"51" ,rating:"5.0", delivery: 'free'},
         {src:"https://d1zgdcrdir5wgt.cloudfront.net/media/vehicle/images/Rd_FCKsTRrau_ZhPWh1MHg.730x390.jpg", 
-        name:"Tesla Model S 2018", price:140, trips:"51" ,rating:"5.0", delivery: 'free'},
+        name:"Tesla Model S 2019", price:140, trips:"51" ,rating:"5.0", delivery: 'free'},
         {src:"https://d1zgdcrdir5wgt.cloudfront.net/media/vehicle/images/JFxpbWXsSPeTyVGajafUuw.730x390.jpg", 
         name:"Tesla Model 3 2019", price:170, trips:"51" ,rating:"5.0", delivery: 'free'},
         {src:"https://d1zgdcrdir5wgt.cloudfront.net/media/vehicle/images/oZeBOX5wRhugcdt3tta6nQ.730x390.jpg", 
@@ -82,7 +82,7 @@ export default function CarList() {
       </header>
       <div className="car-list">
           {cars.map(car=>(
-              <Card className={classes.root}>
+              <Card className={classes.root} key={car.name}>
                 <CardActionArea>
                     <CardMedia
                     className={classes.media}

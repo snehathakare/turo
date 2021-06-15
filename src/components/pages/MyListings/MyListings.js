@@ -16,7 +16,7 @@ const MyListings = () => {
             <Nav />
             <h2 className="flex">Your listings</h2>
             {carInfo.map(car=>(
-                <div className="listing-card">
+                <div className="listing-card" key={car.name}>
                     <Card>
                         <div className="listing-container">
                             <div className="listing-left">

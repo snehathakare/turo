@@ -47,13 +47,13 @@ export function SimpleAccordion() {
           aria-controls="panel1a-content"
           id="panel1a-header"
         >
-          <Typography className={classes.heading}><h4>Your car</h4></Typography>
+          <Typography className={classes.heading} component={'span'}><h4>Your car</h4></Typography>
         </AccordionSummary>
         <AccordionDetails>
-          <Typography>
+          <Typography component={'span'}>
             <div className="form-flex-col">
               <h5>Where is your car located?</h5>
-              <input type="text" placeHolder="Enter address"/>
+              <input type="text" placeholder="Enter address"/>
               <AddressForm />
             </div>
           </Typography>
@@ -65,11 +65,11 @@ export function SimpleAccordion() {
           aria-controls="panel2a-content"
           id="panel2a-header"
         >
-          <Typography className={classes.heading}><h4>Profile photo</h4></Typography>
+          <Typography className={classes.heading} component={'span'}><h4>Profile photo</h4></Typography>
         </AccordionSummary>
         <AccordionDetails>
-          <Typography className="flex">
-            <p><Avatar /></p>
+          <Typography className="flex" component={'span'}>
+            <p><Avatar component={'span'}/></p>
             <button className="btn-listing-photo">upload photo</button><p>or</p>
             <button className="btn-listing-fb">use Facebook photo</button>
           </Typography>
@@ -81,10 +81,10 @@ export function SimpleAccordion() {
           aria-controls="panel2a-content"
           id="panel2a-header"
         >
-          <Typography className={classes.heading}><h4>Mobile number</h4></Typography>
+          <Typography className={classes.heading} component={'span'}><h4>Mobile number</h4></Typography>
         </AccordionSummary>
         <AccordionDetails>
-          <Typography>
+          <Typography component={'span'}>
             <div className="form-flex-col">
               <p>Enter your phone number</p>
               <input type="text" placeholder="Enter number"/>
@@ -100,10 +100,10 @@ export function SimpleAccordion() {
           aria-controls="panel2a-content"
           id="panel2a-header"
         >
-          <Typography className={classes.heading}><h4>Driver's license</h4></Typography>
+          <Typography className={classes.heading} component={'span'}><h4>Driver's license</h4></Typography>
         </AccordionSummary>
         <AccordionDetails>
-          <Typography>
+          <Typography component={'span'}>
             <div className="form-flex-row car-license">
               <div className="form-flex-col">
                 <p>Issuing country</p>
@@ -155,10 +155,10 @@ export function SimpleAccordion() {
           aria-controls="panel2a-content"
           id="panel2a-header"
         >
-          <Typography className={classes.heading}><h4>Your goals</h4></Typography>
+          <Typography className={classes.heading} component={'span'}><h4>Your goals</h4></Typography>
         </AccordionSummary>
         <AccordionDetails>
-          <Typography>
+          <Typography component={'span'}>
             <Goal />
           </Typography>
         </AccordionDetails>
@@ -169,10 +169,10 @@ export function SimpleAccordion() {
           aria-controls="panel2a-content"
           id="panel2a-header"
         >
-          <Typography className={classes.heading}><h4>Car availablity</h4></Typography>
+          <Typography className={classes.heading} component={'span'}><h4>Car availablity</h4></Typography>
         </AccordionSummary>
         <AccordionDetails>
-          <Typography>
+          <Typography component={'span'}>
             <CarAvailablity />
           </Typography>
         </AccordionDetails>
@@ -183,10 +183,10 @@ export function SimpleAccordion() {
           aria-controls="panel2a-content"
           id="panel2a-header"
         >
-          <Typography className={classes.heading}><h4>Car Details</h4></Typography>
+          <Typography className={classes.heading} component={'span'}><h4>Car Details</h4></Typography>
         </AccordionSummary>
         <AccordionDetails>
-          <Typography>
+          <Typography component={'span'}>
             <CarDetails />
           </Typography>
         </AccordionDetails>
@@ -197,10 +197,10 @@ export function SimpleAccordion() {
           aria-controls="panel2a-content"
           id="panel2a-header"
         >
-          <Typography className={classes.heading}><h4>Car Photos</h4></Typography>
+          <Typography className={classes.heading} component={'span'}><h4>Car Photos</h4></Typography>
         </AccordionSummary>
         <AccordionDetails>
-          <Typography>
+          <Typography component={'span'}>
            <CarPhotos />
           </Typography>
         </AccordionDetails>
@@ -211,10 +211,10 @@ export function SimpleAccordion() {
           aria-controls="panel2a-content"
           id="panel2a-header"
         >
-          <Typography className={classes.heading}><h4>Payout</h4></Typography>
+          <Typography className={classes.heading} component={'span'}><h4>Payout</h4></Typography>
         </AccordionSummary>
         <AccordionDetails>
-          <Typography>
+          <Typography component={'span'}>
             <Payout />
           </Typography>
         </AccordionDetails>

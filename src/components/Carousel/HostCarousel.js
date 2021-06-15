@@ -23,7 +23,7 @@ function HostCarousel() {
           <h2>Top hosts on Turo</h2>
           <Carousel itemsToShow={3}>
             {hosts.map((host) => (
-                   <Item key={host.name}>
+                   <Item key={host.host_name}>
                        <Card>
                             <CardContent>
                                 <div className="host-card">

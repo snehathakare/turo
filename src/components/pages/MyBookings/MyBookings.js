@@ -20,7 +20,7 @@ const MyBookings = () => {
             <Nav />
             <h2 className="flex">Trips History</h2>
             {carInfo.map(car=>(
-                <div className="bookings-card">
+                <div className="bookings-card" key={car.name}>
                     <Card>
                         <div className="bookings-container">
                             <div className="bookings-left">
