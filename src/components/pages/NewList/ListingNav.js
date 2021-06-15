@@ -43,26 +43,6 @@ export default function ListingNav(props) {
     const handleSearch = ()=> {
       props.uriParamsHandler(query)
 
-        let url = `${API_BASE_URL}/cars/listings?from=${query.from}&to=${query.to}&where=${query.where}&page=0&size=50`
-
-
-        const config = {
-            headers:{
-                'Authorization': localStorage.getItem('access'),
-            }
-        }
-
-        axios.get(url,config)
-        .then(response =>{
-            console.log("Response Data from Search")
-            console.log(response.data)
-            props.searchDataHandler(response.data.data.items)
-
-        })
-        .catch(err=>{
-            console.log(err.response)
-        })
-
     }
     
     
@@ -223,7 +203,7 @@ React.useEffect(()=>{
                     </div>
                     {localStorage.getItem("access") == null ? 
                     <div className="nav-right-links">
-                        <a className="custom_a" href="/new-list">List your car</a>
+                        <a href="/new-list">List your car</a>
                     <FormDialogLogin 
                     handleOpenLogin={props.handleOpenLogin}
                     setLoggedIn={setLoggedIn} loginDialog={loginState} changeLoginDialog={changeLoginState} registerDialog={registerState} changeForgotDialog={changeForgotState} changeRegisterDialog={changeRegisterState} />
@@ -233,14 +213,14 @@ React.useEffect(()=>{
                     :
                         <div className="loggedin-items">
                             <div className="nav-right-links">
-                                <a className="custom_a" href="/new-list">List your car</a>
+                                <a href="/new-list">List your car</a>
                                 <div className="nav-dropdown">
-                                    <a className="custom_a" href="/">Hi, {first_name} {last_name}</a>
+                                    <a href="/">Hi, {first_name} {last_name}</a>
                                     <div className="dropdown-content">
                                         <ul>
-                                            <a href="/my-bookings" className="a_no_dec"> <li>My Trips</li></a>
-                                            <a href="/my-lisitings" className="a_no_dec"> <li>My Listings</li></a>
-                                            <a href="/my-account" className="a_no_dec"> <li>My Account</li></a>
+                                            <li>My Trips</li>
+                                            <li>My listings</li>
+                                            <li>My account</li>
                                             <li onClick={LogoutHandler}>Log out</li>
                                         </ul>
                                     </div>
