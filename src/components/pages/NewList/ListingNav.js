@@ -9,7 +9,7 @@ import Avatar from '@material-ui/core/Avatar';
 import {API_BASE_URL} from "../../../Constants";
 import GooglePlacesAutocomplete from "react-google-places-autocomplete";
 import SearchIcon from "@material-ui/icons/Search";
-import {Link, useHistory} from "react-router-dom";
+import {Link, useHistory, useLocation} from "react-router-dom";
 
 
 export default function ListingNav(props) {
@@ -23,13 +23,18 @@ export default function ListingNav(props) {
       user_profile_img : null
   
     })
-
+    let location = useLocation()
+    console.log(location.state)
+    let passedQ = location.state?location.state.params:""
     //Query states
     const [query,setQuery] = React.useState({
       where:'',
       from:'',
       to:''
     })
+    console.log(props)
+    function p(number){return number.toString().padStart(2, '0');}//number to 2 digit, 0 padded string
+
 
     const {where,from,until} = query
     const onChange = (e) =>setQuery({ ...query, [e.target.name]: e.target.value })
@@ -94,8 +99,18 @@ export default function ListingNav(props) {
 }
 
 React.useEffect(() => {
-    
- 
+
+
+    if (passedQ.from && passedQ.to){
+        let a = new Date(passedQ.from)
+        let date1=`${a.getFullYear()}-${p(a.getMonth()+1)}-${p(a.getDate())}T${p(a.getHours())}:${p(a.getMinutes())}`;
+        let t = new Date(passedQ.to)
+        let  date2=`${t.getFullYear()}-${p(t.getMonth()+1)}-${p(t.getDate())}T${p(t.getHours())}:${p(t.getMinutes())}`;
+
+        setQuery({from:date1,until:date2})
+        console.log(date1)
+    }
+
   if(isLoggedIn){
     fetch_UserDetails()
   }
@@ -188,8 +203,9 @@ React.useEffect(()=>{
                         name="from"
                         value={from}
                         onChange={e=>onChange(e)}
-                        type="datetime-local" 
-                        placeholder="date" />
+                        type="datetime-local"
+                        placeholder="date"
+                         />
                     </div>
                     <div>Until</div>
                     <div className="listing-nav-input">
