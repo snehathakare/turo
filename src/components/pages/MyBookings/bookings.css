@@ -1,5 +1,5 @@
 .bookings-container{
-    width: 940px;
+
     margin-right: auto;
     margin-left: auto;
     display: flex;
@@ -19,6 +19,7 @@
     width:70%;
 }
 .bookings-card{
+    overflow: visible;
     display: flex;
     justify-content: center;
     width:50%;

@@ -42,15 +42,15 @@ function App() {
         <Route exact path="/account" component={AccountActionPage} />
 
         <Route path="/my-account">
-        <UserProfile  />
-      </Route>
+            {localStorage.getItem("access")?  <UserProfile  />: <Redirect to="/home" />}
+        </Route>
 
         <Route path="/my-listings">
-            <MyListings  />
+            {localStorage.getItem("access")?  <MyListings  />: <Redirect to="/home" />}
         </Route>
 
         <Route path="/my-bookings">
-            <MyBookings  />
+            {localStorage.getItem("access")?  <MyBookings  />: <Redirect to="/home" />}
         </Route>
         
       <Route path="/listings-search:from:to:where">
