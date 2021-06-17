@@ -126,7 +126,7 @@ return (
        <div className="dropdown-content">
          <ul>
            <a href="/my-bookings" className="a_no_dec"> <li>My Trips</li></a>
-           <a href="/my-lisitings" className="a_no_dec"> <li>My Listings</li></a>
+           <a href="/my-listings" className="a_no_dec"> <li>My Listings</li></a>
            <a href="/my-account" className="a_no_dec"> <li>My Account</li></a>
            <li onClick={LogoutHandler}>Log out</li>
          </ul>
