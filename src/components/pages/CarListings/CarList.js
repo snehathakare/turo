@@ -26,34 +26,44 @@ const useStyles = makeStyles({
   },
 });
 
-export default function CarList(props) {
+export default function CarList({uriParams}) {
   const classes = useStyles();
   let location = useLocation()
-  console.log(location.state)
   let query = location.state?location.state.params:""
   const [cars, setCars] = useState(carInfo);
+  const [counter,setCounter] = useState(0)
   const [carsInfo,setCarsInfo] = useState(null)
   //Length of data returned as a response by get request
   const [carDataLength,setcarDataLength] = useState(0)
   //Page Numbers for pagination
   const [pageNumber,setPageNumber] = useState(0)
   //Cards Per Page
-  const [cardsPerPage,setcardsPerPage] = useState(20)
+  const [cardsPerPage,setcardsPerPage] = useState(2)
   //Number of Cards Visited or seen
   const pagesVisited = pageNumber * cardsPerPage
-
   //Function to handle and change pages on selection
+  console.log(uriParams)
+  useEffect(()=>{
+    getCarsList()
+
+  },[counter,cardsPerPage,uriParams])
+
+
   const changePage = ({ selected }) => {
+    
     setPageNumber(selected)
+    setCounter(selected)
+   
   };
   
   useEffect(() => {
+        getCarsList() 
+  },[]);
 
-      getCarsList() 
-},[]);
 
 
 const history = useHistory();
+
   const getCarsList = () => {
     const config = {
       headers: {
@@ -62,40 +72,34 @@ const history = useHistory();
       }
   };
   
-  if(props.uriParams){
+  if(uriParams){
     if (history.location.state && history.location.state.params) {
       let state = { ...history.location.state };
-      state.params = props.uriParams
+      state.params = uriParams
       history.replace({ ...history.location, state });
+
   }
-    
- }
+  console.log(query)
+  query = uriParams
+  console.log(query)
+}
   
-  let url = `${API_BASE_URL}/cars/listings?from=${query.from}&to=${query.to}&where=${query.where}&page=0&size=50`
+  let url = `${API_BASE_URL}/cars/listings?from=&to=&where=${query.where}&page=${counter}&size=${cardsPerPage}`
   
     axios.get(url,config).then((response)=>{
-      console.log('listing',response.data.data.items)
+      console.log('Request Done',response)
       setCarsInfo(response.data.data.items)
-      setcarDataLength(response.data.data.items[0].count)
-      
+      if(carDataLength === 0 || uriParams){
+      setcarDataLength(response.data.data.count)
+      }
+     
      
     }).catch(err => {
       console.log(err.response)
     })
   }
 
-  /*useEffect(() => {
-    console.log("props.openLogin123",props.openLogin)
-    if(localStorage.getItem("access") == null){
-      console.log('ifff');
-      props.handleOpenLogin(true)
-    }else{
-      props.handleOpenLogin(false)
-    }
-  });*/
-
   
-
   const filterPrice = (price) => {
     const updatedItems = carInfo.filter((car) =>{
       return car.price > price
@@ -163,15 +167,12 @@ const history = useHistory();
       {carsInfo && carsInfo.length == 0 ?
       <h1>No Data to Display</h1>
       :  <div>
-            {carsInfo && carsInfo.slice(pagesVisited,pagesVisited+cardsPerPage).map(car=>(
+            {carsInfo && carsInfo.map(car=>(
                 <Link style={{textDecoration:'none'}} to={{
-                  pathname:"/listing-details?from="+query.from+"&to="+query.to,
+                  pathname:"/listing-details",
                   state:{
-                    total_price:car.total_price,
-                    item_id : car.listing_id,
-                    params: query
-                  },
-
+                    item_id : car.listing_id
+                  }
                 }}>
                   <Card className={classes.root}>
                     <CardActionArea>
@@ -203,7 +204,7 @@ const history = useHistory();
   </div>
 
   <div>
-{ carInfo &&
+{ carsInfo &&
 <div className="paginationContent">
   <ReactPaginate 
     previousLabel={"Previous"}
@@ -220,11 +221,12 @@ const history = useHistory();
     {
       setcardsPerPage(e.target.value)
       setPageNumber(0)
+      
     }
     }>
-  <option value={20}>20</option>
-  <option value={50}>50</option>
-  <option value={100}>100</option>
+  <option value={2}>20</option>
+  <option value={5}>50</option>
+  <option value={10}>100</option>
   </select>
   </div>
   
