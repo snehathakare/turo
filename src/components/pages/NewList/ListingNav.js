@@ -26,6 +26,7 @@ export default function ListingNav(props) {
     let location = useLocation()
     console.log(location.state)
     let passedQ = location.state?location.state.params:""
+    console.log(passedQ)
     //Query states
     const [query,setQuery] = React.useState({
       where:'',
@@ -87,7 +88,7 @@ React.useEffect(() => {
         let t = new Date(passedQ.to)
         let  date2=`${t.getFullYear()}-${p(t.getMonth()+1)}-${p(t.getDate())}T${p(t.getHours())}:${p(t.getMinutes())}`;
 
-        setQuery({from:date1,until:date2})
+        setQuery({from:date1,until:date2,where: passedQ.where})
         console.log(date1)
     }
 
@@ -173,7 +174,7 @@ React.useEffect(()=>{
                         apiOptions={{ language: 'en', region: 'us' }}
                         selectProps={{
                             onChange:setP,
-                            placeholder:"Where"
+                            placeholder: where?where:"Where"
                         }}
                         apiKey="AIzaSyDDqsqjB6WrkHlUZgXBPCsHXXpZrBWfL1E"
                     />
@@ -213,14 +214,14 @@ React.useEffect(()=>{
                     :
                         <div className="loggedin-items">
                             <div className="nav-right-links">
-                                <a href="/new-list">List your car</a>
+                                <a className="custom_a" href="/new-list">List your car</a>
                                 <div className="nav-dropdown">
-                                    <a href="/">Hi, {first_name} {last_name}</a>
+                                    <a className="custom_a" href="/">Hi, {first_name} {last_name}</a>
                                     <div className="dropdown-content">
                                         <ul>
-                                            <li>My Trips</li>
-                                            <li>My listings</li>
-                                            <li>My account</li>
+                                            <a href="/my-bookings" className="a_no_dec"> <li>My Trips</li></a>
+                                            <a href="/my-listings" className="a_no_dec"> <li>My Listings</li></a>
+                                            <a href="/my-account" className="a_no_dec"> <li>My Account</li></a>
                                             <li onClick={LogoutHandler}>Log out</li>
                                         </ul>
                                     </div>
@@ -232,8 +233,7 @@ React.useEffect(()=>{
                             {/*</Avatar>*/}
 
                         </div>
-}
-                    
+                    }
                 </div>
             </div>
             <div className="nav-right-links">

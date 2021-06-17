@@ -38,7 +38,7 @@ export default function CarList({uriParams}) {
   //Page Numbers for pagination
   const [pageNumber,setPageNumber] = useState(0)
   //Cards Per Page
-  const [cardsPerPage,setcardsPerPage] = useState(2)
+  const [cardsPerPage,setcardsPerPage] = useState(20)
   //Number of Cards Visited or seen
   const pagesVisited = pageNumber * cardsPerPage
   //Function to handle and change pages on selection
@@ -84,13 +84,16 @@ const history = useHistory();
   console.log(query)
 }
   
-  let url = `${API_BASE_URL}/cars/listings?from=&to=&where=${query.where}&page=${counter}&size=${cardsPerPage}`
+  let url = `${API_BASE_URL}/cars/listings?from=${query.from}&to=${query.to}&where=${query.where}&page=${counter}&size=${cardsPerPage}`
   
     axios.get(url,config).then((response)=>{
       console.log('Request Done',response)
+      for (let i=0;i<response.data.data.items.length;i++){
+        console.log(response.data.data)
+      }
       setCarsInfo(response.data.data.items)
       if(carDataLength === 0 || uriParams){
-      setcarDataLength(response.data.data.count)
+         setcarDataLength(response.data.data.count)
       }
      
      
@@ -169,10 +172,12 @@ const history = useHistory();
       :  <div>
             {carsInfo && carsInfo.map(car=>(
                 <Link style={{textDecoration:'none'}} to={{
-                  pathname:"/listing-details",
+                  pathname:"/listing-details?from="+query.from+"&to="+query.to,
                   state:{
-                    item_id : car.listing_id
-                  }
+                    total_price:car.total_price,
+                    item_id : car.listing_id,
+                    params: query
+                  },
                 }}>
                   <Card className={classes.root}>
                     <CardActionArea>
