@@ -57,9 +57,8 @@ const MyListings = () => {
                             </div>
                             <div className="bookings-right">
                                 <div className="text-light">
-                                    <p>Booking dates: <span>{`${car.from?new Date(car.from).toLocaleString():""} until: ${car.to?new Date(car.to).toLocaleString():""}`}</span></p>
-                                    <p><span>Billed amount: </span>{`${car.price?car.price:""}$`}</p>
-                                    <button className="profile-primary-btn">Book again</button>
+                                    <p><span>Price per day: </span>{`${car.price?car.price:""}$`}</p>
+
                                 </div>
                             </div>
                         </div>

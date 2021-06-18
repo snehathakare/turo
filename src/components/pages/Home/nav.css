@@ -148,7 +148,10 @@
   justify-content: center;
   align-items: center;
 }
-
+.scroll{
+  max-height: 400px;
+  overflow-y: scroll;
+}
 .center {
   text-align: center;
 }

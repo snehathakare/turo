@@ -64,7 +64,7 @@ export default function CarList({uriParams}) {
 
 const history = useHistory();
 
-  const getCarsList = () => {
+  const getCarsList = (orderBy) => {
     const config = {
       headers: {
           'Content-Type': 'application/json',
@@ -83,8 +83,12 @@ const history = useHistory();
   query = uriParams
   console.log(query)
 }
-  
-  let url = `${API_BASE_URL}/cars/listings?from=${query.from}&to=${query.to}&where=${query.where}&page=${counter}&size=${cardsPerPage}`
+    let url
+  if(!orderBy) {
+    url = `${API_BASE_URL}/cars/listings?from=${query.from}&to=${query.to}&where=${query.where}&page=${counter}&size=${cardsPerPage}&order=`
+  }else {
+    url = `${API_BASE_URL}/cars/listings?from=${query.from}&to=${query.to}&where=${query.where}&page=${counter}&size=${cardsPerPage}&order=${orderBy}`
+  }
   
     axios.get(url,config).then((response)=>{
       console.log('Request Done',response)
@@ -103,18 +107,12 @@ const history = useHistory();
   }
 
   
-  const filterPrice = (price) => {
-    const updatedItems = carInfo.filter((car) =>{
-      return car.price > price
-    })
-    setCars(updatedItems);
+  const filterPrice = () => {
+      getCarsList("daily_price_low")
   }
 
-  const filterBooking = (book) => {
-    const updatedItems = carInfo.filter((car) =>{
-      return car.book_now === book
-    })
-    setCars(updatedItems);
+  const filterDistance = () => {
+      getCarsList("distance")
   }
 
   const filterDelivery = (del) => {
@@ -133,11 +131,11 @@ const history = useHistory();
       <div className="listing-filter-stack">
           <button className="listing-filters">Best match</button>
           <div className="price-btn">
-            <button className="listing-filters" onClick={() => filterPrice(140)}>Price</button>
+            <button className="listing-filters" onClick={() => filterPrice()}>Price</button>
           </div>
           <div className="slider-dropdown"><DiscreteSlider /></div>
-          <button className="listing-filters" onClick={() => filterBooking(true)}>Distance</button>
-          <button className="listing-filters" onClick={() => filterBooking(true)}>Latest model</button>
+          <button className="listing-filters" onClick={() => filterDistance()}>Distance</button>
+          {/*<button className="listing-filters" onClick={() => filterBooking(true)}>Latest model</button>*/}
           {/*<button className="listing-filters" onClick={() => filterBooking(true)}>Book Instantly</button>*/}
           {/*<button className="listing-filters" onClick={() => filterDelivery('free')}>Delivery</button>*/}
           {/*<button className="listing-filters">Distance included</button>*/}

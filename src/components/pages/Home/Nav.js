@@ -11,6 +11,7 @@ import Avatar from '@material-ui/core/Avatar';
 import FormDialogForgotPass from "../Auth/FormDialogForgotPass";
 import ClipLoader from "react-spinners/ClipLoader";
 import {API_BASE_URL} from "../../../Constants";
+import FormDialogTerms from "../Auth/FormDialogTerms";
 
 export default function Nav() {
   
@@ -25,6 +26,7 @@ export default function Nav() {
   const [loginState,setLoginState] = React.useState(false)
   const [registerState,setRegisterState] = React.useState(false)
   const [forgotPassState,setForgotPassState] = React.useState(false)
+  const [termsState,setTermsState] = React.useState(false)
 
   const ErrorMessage = (value)=>{
     seterrMsg(value)
@@ -39,6 +41,9 @@ export default function Nav() {
 
   let changeRegisterState = (value)=>{
     setRegisterState(value)
+  }
+  let changeTermsState = (value)=>{
+    setTermsState(value)
   }
 
   const {first_name,last_name,user_profile_img} = profileData
@@ -166,17 +171,26 @@ return (
         changeRegisterDialog={changeRegisterState}/>
 
         <FormDialogSignup 
-        errMsg={errMsg}
-        ErrorMessage={ErrorMessage}
-        loginDialog={loginState} 
-        changeLoginDialog={changeLoginState} 
-        registerDialog={registerState} 
-        changeRegisterDialog={changeRegisterState}/>
+          errMsg={errMsg}
+         ErrorMessage={ErrorMessage}
+         loginDialog={loginState}
+         changeLoginDialog={changeLoginState}
+         registerDialog={registerState}
+         changeRegisterDialog={changeRegisterState}
+          termsDialog = {termsState}
+          changeTermsDialog={changeTermsState}
+        />
 
-        <FormDialogForgotPass  
+        <FormDialogForgotPass
         forgotPassDialog={forgotPassState} 
         changeLoginDialog={changeLoginState} 
-        changeForgotDialog={changeForgotState}/>
+        changeForgotDialog={changeForgotState}
+        />
+       <FormDialogTerms
+         termsDialog={termsState}
+         changeSignupDialog={changeRegisterState}
+         changeTermsDialog={changeTermsState}
+      />
 
 
      <PersonOutlineIcon/>

@@ -5,6 +5,8 @@ import Dialog from "@material-ui/core/Dialog";
 import DialogActions from "@material-ui/core/DialogActions";
 import CloseIcon from "@material-ui/icons/Close";
 import ClipLoader from "react-spinners/ClipLoader";
+import {Checkbox, FormControlLabel} from "@material-ui/core";
+import {toast} from "react-toastify";
 
 export default function FormDialogSignup(props){
     const [openForm, setOpenForm] = React.useState(false);
@@ -14,7 +16,7 @@ export default function FormDialogSignup(props){
     const [color, setColor] = React.useState("#000");
     const [profile_pic,setprofile_pic] = React.useState(null);
     const profilepic = new FormData()
-
+    const [checked, setChecked] = React.useState(false);
     const [formData, setFormData] = React.useState({
         first_name: '',
         last_name: '',
@@ -43,7 +45,12 @@ export default function FormDialogSignup(props){
     let handleConfirmPassword=(event)=>{
         setConfirmPassword(event.target.value)
     }
+    let navigateToTerms=()=>{
 
+        props.changeRegisterDialog(false)
+        props.changeLoginDialog(false)
+        props.changeTermsDialog(true)
+    }
     let navigateToLogin=()=>{
         props.changeRegisterDialog(false)
         props.changeLoginDialog(true)
@@ -54,68 +61,72 @@ export default function FormDialogSignup(props){
     }
 
     const signUp=(user)=>{
-        seterrMsg('')
-        
-        let url = `${API_BASE_URL}/user`
-        const config = {
-            headers: {
-                'Content-Type': 'multipart/formdata'
+        if (checked===true) {
+            seterrMsg('')
+
+            let url = `${API_BASE_URL}/user`
+            const config = {
+                headers: {
+                    'Content-Type': 'multipart/formdata'
+                }
+            };
+
+            const {first_name, last_name, email, phone, password} = user
+
+            let newUser = {
+                first_name: first_name,
+                last_name: last_name,
+                email: email,
+                phone: phone,
+                password: password
             }
-        };
 
-        const {first_name,last_name,email,phone,password} = user
-       
-        let newUser = {
-            first_name:first_name,
-            last_name:last_name,
-            email:email,
-            phone:phone,
-            password:password
-        }
+            if (password == confirmPassword) {
+                setLoading(true)
+                const data = new FormData()
+                if (profile_pic)
+                    data.append("file", profile_pic)
+                data.append("user", JSON.stringify(newUser))
 
-        if(password == confirmPassword){
-            setLoading(true)
-            const data = new FormData()
-            if(profile_pic)
-              data.append("file",profile_pic)
-            data.append("user",JSON.stringify(newUser))
-         
 
-            axios.post(url,data)
-                .then((res)=>{
-                    console.log('res',res)
-                    setFormData({
-                        first_name: '',
-                        last_name: '',
-                        email: '',
-                        phone: '',
-                        password: ''
-                    })
-                    setConfirmPassword('')
-                    setLoading(false)
-                    seterrMsg('')
-                    props.changeRegisterDialog(false)
-                    props.changeLoginDialog(true)
-                })
-                .catch(err => {
-                    console.log(err.response)
-                    if(err.response.data.response){
-                        seterrMsg(err.response.data.response)
+                axios.post(url, data)
+                    .then((res) => {
+                        console.log('res', res)
+                        setChecked(false)
+                        setFormData({
+                            first_name: '',
+                            last_name: '',
+                            email: '',
+                            phone: '',
+                            password: ''
+                        })
+                        setConfirmPassword('')
                         setLoading(false)
+                        seterrMsg('')
+                        props.changeRegisterDialog(false)
+                        props.changeLoginDialog(true)
+                    })
+                    .catch(err => {
+                        console.log(err.response)
+                        setChecked(false)
+                        if (err.response.data.response) {
+                            seterrMsg(err.response.data.response)
+                            setLoading(false)
 
-                    }
-                    props.changeRegisterDialog(true)
-                    props.changeLoginDialog(false)
-                })
-        }
-        else{
-            seterrMsg("Both password Fields Should Match")
-            props.changeRegisterDialog(true)
-            props.changeLoginDialog(false)
+                        }
+                        props.changeRegisterDialog(true)
+                        props.changeLoginDialog(false)
+                    })
+            } else {
+                seterrMsg("Both password Fields Should Match")
+                props.changeRegisterDialog(true)
+                props.changeLoginDialog(false)
+            }
+        }else {
+            toast.error("You must agree to the terms and conditions in order to register a new account!")
         }
     }
 
-    
     const profilepicHandler = (e) => { // take the event as a parameter here
         e.preventDefault(); // Prevent form submission
         profilepic.append("image",profile_pic,profile_pic.name)
@@ -135,7 +146,7 @@ export default function FormDialogSignup(props){
                 {console.log('kkk',props.registerDialog)}
                 <DialogActions className="button-stack">
                     <h2>Welcome to Turo</h2>
-                    {errMsg == '' ?
+                    {errMsg == '' && openForm === false?
                         <button onClick={handleForm} className="btn-long-transparent">
                             Continue with Email
                         </button> : null
@@ -209,8 +220,21 @@ export default function FormDialogSignup(props){
                                     <input required placeholder="Confirm Password" type="password"
                                            value={confirmPassword}
                                            name="confirmPassword" onChange={handleConfirmPassword}/>
-
-                                    <button type="submit" onClick={(e)=>{
+                                    <div>
+                                    <FormControlLabel
+                                        value="top"
+                                        control={
+                                            <Checkbox
+                                                value="confirm"
+                                                onChange={() => setChecked(!checked)}
+                                                inputProps={{ 'aria-label': '' }}
+                                            />
+                                        }
+                                        labelPlacement="left"
+                                    />
+                                    <p style={{display:"inline-block"}}>I agree to the <a style={{cursor:'pointer',textDecoration:"underline"}} onClick={navigateToTerms}>terms and conditions</a></p>
+                                    </div>
+                                    <button className="btn-long" onClick={(e)=>{
                                         e.preventDefault()
                                         let user = {
                                             first_name,

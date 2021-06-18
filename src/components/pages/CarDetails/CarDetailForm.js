@@ -56,7 +56,7 @@ function CarDetailForm(props) {
         setOpen(false)
     };
     const handleChange = (e) => {
-        setConfirmed(e)
+        setConfirmed(e.target.value)
     };
 
     return (

@@ -10,6 +10,7 @@ import {API_BASE_URL} from "../../../Constants";
 import GooglePlacesAutocomplete from "react-google-places-autocomplete";
 import SearchIcon from "@material-ui/icons/Search";
 import {Link, useHistory, useLocation} from "react-router-dom";
+import FormDialogTerms from "../Auth/FormDialogTerms";
 
 
 export default function ListingNav(props) {
@@ -17,6 +18,7 @@ export default function ListingNav(props) {
     const [registerState,setRegisterState] = React.useState(false)
     const [forgotPassState,setForgotPassState] = React.useState(false)
     const [isLoggedIn,setLoggedIn] = React.useState(false)
+    const [termsState,setTermsState] = React.useState(false)
     const [profileData,setProfileData] = React.useState({
       first_name : '',
       last_name : '',
@@ -45,7 +47,9 @@ export default function ListingNav(props) {
       props.uriParamsHandler(query)
 
     }
-    
+    let changeTermsState = (value)=>{
+        setTermsState(value)
+    }
     
     const {user_profile_img} = profileData
     function setP(e) {
@@ -206,10 +210,26 @@ React.useEffect(()=>{
                     <div className="nav-right-links">
                         <a href="/new-list">List your car</a>
                     <FormDialogLogin 
-                    handleOpenLogin={props.handleOpenLogin}
-                    setLoggedIn={setLoggedIn} loginDialog={loginState} changeLoginDialog={changeLoginState} registerDialog={registerState} changeForgotDialog={changeForgotState} changeRegisterDialog={changeRegisterState} />
-                    <FormDialogSignup changeLoginDialog={changeLoginState} registerDialog={registerState} changeRegisterDialog={changeRegisterState} />
-                    <FormDialogForgotPass  forgotPassDialog={forgotPassState} changeLoginDialog={changeLoginState} changeForgotDialog={changeForgotState}/>
+                     handleOpenLogin={props.handleOpenLogin}
+                    setLoggedIn={setLoggedIn}
+                     loginDialog={loginState}
+                     changeLoginDialog={changeLoginState}
+                     registerDialog={registerState}
+                     changeForgotDialog={changeForgotState}
+                     changeRegisterDialog={changeRegisterState}
+                    />
+                    <FormDialogSignup
+                        changeLoginDialog={changeLoginState}
+                        registerDialog={registerState}
+                        changeTermsDialog={changeTermsState}
+                        changeRegisterDialog={changeRegisterState}
+                    />
+                        <FormDialogTerms
+                            termsDialog={termsState}
+                            changeSignupDialog={changeRegisterState}
+                            changeTermsDialog={changeTermsState}
+                        />
+                        <FormDialogForgotPass  forgotPassDialog={forgotPassState} changeLoginDialog={changeLoginState} changeForgotDialog={changeForgotState}/>
                     </div>
                     :
                         <div className="loggedin-items">
